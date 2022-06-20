@@ -6,9 +6,9 @@
 #define INCLUDE_SDL_IMAGE
 #define INCLUDE_SDL_MIXER
 
-#define TITLE "Default"
-#define WIDTH 1024
-#define HEIGHT 600
+#define DEFAULT_TITLE "Default"
+#define DEFAULT_WIDTH 1024
+#define DEFAULT_HEIGHT 600
 
 #include "SDL_include.h"
 

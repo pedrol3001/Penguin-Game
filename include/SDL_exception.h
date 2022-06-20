@@ -13,8 +13,7 @@ class SDL_Exception : public exception {
 public:
   SDL_Exception();
   SDL_Exception(string msg);
-  const char* What();
-  void Log();
+  const char* what();
 
 private:
   string message;

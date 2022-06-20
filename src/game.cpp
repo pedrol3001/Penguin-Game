@@ -41,7 +41,7 @@ Game::~Game(){
 
 Game& Game::GetInstance(){
   if(instance == nullptr){
-      instance = new Game(TITLE, WIDTH, HEIGHT);
+      instance = new Game(DEFAULT_TITLE, DEFAULT_WIDTH, DEFAULT_HEIGHT);
   }
   return *instance;
 }
