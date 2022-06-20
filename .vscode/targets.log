@@ -1,0 +1,571 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 4.3
+# Built for x86_64-pc-linux-gnu
+# Copyright (C) 1988-2020 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Mon Jun 20 10:25:55 2022
+
+# Variables
+
+# environment
+GDK_BACKEND = x11
+# environment
+LC_ALL = C
+# environment
+GNOME_SHELL_SESSION_MODE = ubuntu
+# environment
+SSH_AGENT_LAUNCHER = gnome-keyring
+# makefile (from 'Makefile', line 24)
+SRC_PATH = src
+# environment
+GJS_DEBUG_OUTPUT = stderr
+# environment
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-07830a17-8c74-4b94-aeb8-563fbb452e87.sock
+# environment
+MANDATORY_PATH = /usr/share/gconf/ubuntu.mandatory.path
+# environment
+LC_NAME = pt_BR.UTF-8
+# environment
+LC_NUMERIC = pt_BR.UTF-8
+# environment
+VSCODE_CWD = /home/pedrol3001
+# environment
+WINDOWPATH = 2
+# makefile (from 'Makefile', line 12)
+LIBS = -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -lm
+# environment
+NVM_DIR = /home/pedrol3001/.nvm
+# environment
+LC_ADDRESS = pt_BR.UTF-8
+# default
+MAKE_COMMAND := make
+# makefile (from 'Makefile', line 14)
+INC_PATHS = -I$(INC_PATH) $(addprefix -I,$(SDL_INC_PATH))
+# environment
+QT_ACCESSIBILITY = 1
+# environment
+rvm_bin_path = /home/pedrol3001/.rvm/bin
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# default
+.VARIABLES := 
+# environment
+PWD = /home/pedrol3001/Desktop/Penguin-Game
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# environment
+LSCOLORS = Gxfxcxdxbxegedabagacad
+# environment
+XDG_DATA_DIRS = /usr/share/ubuntu:/usr/share/gnome:/home/pedrol3001/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
+# environment
+OLDPWD = /home/pedrol3001
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+VSCODE_LOG_STACK = false
+# automatic
+%F = $(notdir $%)
+# environment
+NVM_INC = /home/pedrol3001/.nvm/versions/node/v16.14.2/include/node
+# environment
+VSCODE_CODE_CACHE_PATH = /home/pedrol3001/.config/Code/CachedData/4af164ea3a06f701fe3e89a2bcbb421d2026b68f
+# environment
+LANG = C
+# environment
+XAUTHORITY = /run/user/1000/gdm/Xauthority
+# default
+.LOADED := 
+# default
+.INCLUDE_DIRS = /usr/local/include /usr/include /usr/include
+# environment
+GEM_PATH = /home/pedrol3001/.rvm/gems/ruby-2.6.5:/home/pedrol3001/.rvm/gems/ruby-2.6.5@global
+# makefile
+MAKEFLAGS = pqrR
+# makefile (from 'Makefile', line 30)
+INC_FILES = $(wildcard $(INC_PATH)/*.h)
+# makefile (from 'Makefile', line 21)
+RFLAGS = -O3 -mtune=native
+# makefile
+CURDIR := /home/pedrol3001/Desktop/Penguin-Game
+# environment
+VSCODE_PIPE_LOGGING = true
+# makefile (from 'Makefile', line 6)
+RMDIR = rm -rdf
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# makefile (from 'Makefile', line 23)
+INC_PATH = include
+# environment
+MFLAGS = -pqrR
+# environment
+SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
+# default
+.SHELLFLAGS := -c
+# environment
+NVM_BIN = /home/pedrol3001/.nvm/versions/node/v16.14.2/bin
+# environment
+XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# environment
+P9K_SSH = 0
+# environment
+XDG_SESSION_DESKTOP = ubuntu
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST := Makefile
+# automatic
+@F = $(notdir $@)
+# environment
+ZSH = /home/pedrol3001/.oh-my-zsh
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# environment
+VSCODE_PID = 6515
+# environment
+XDG_SESSION_TYPE = x11
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# environment
+MY_RUBY_HOME = /home/pedrol3001/.rvm/rubies/ruby-2.6.5
+# makefile (from 'Makefile', line 17)
+FLAGS = -std=c++11 -Wall
+# environment
+SESSION_MANAGER = local/Pedrol-PC:@/tmp/.ICE-unix/4053,unix/Pedrol-PC:/tmp/.ICE-unix/4053
+# automatic
+*F = $(notdir $*)
+# environment
+CHROME_DESKTOP = code-url-handler.desktop
+# environment
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# makefile (from 'Makefile', line 36)
+EXEC = game
+# environment
+VSCODE_NLS_CONFIG = {"locale":"pt-br","availableLanguages":{"*":"pt-br"},"_languagePackId":"195456cb6bc5e7dd989215cd334fb359.pt-br","_translationsConfigFile":"/home/pedrol3001/.config/Code/clp/195456cb6bc5e7dd989215cd334fb359.pt-br/tcf.json","_cacheRoot":"/home/pedrol3001/.config/Code/clp/195456cb6bc5e7dd989215cd334fb359.pt-br","_resolvedLanguagePackCoreLocation":"/home/pedrol3001/.config/Code/clp/195456cb6bc5e7dd989215cd334fb359.pt-br/4af164ea3a06f701fe3e89a2bcbb421d2026b68f","_corruptedFile":"/home/pedrol3001/.config/Code/clp/195456cb6bc5e7dd989215cd334fb359.pt-br/corrupted.info","_languagePackSupport":true}
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
+# makefile (from 'Makefile', line 4)
+COMPILER = g++
+# environment
+GNOME_DESKTOP_SESSION_ID = this-is-deprecated
+# makefile
+SHELL = /bin/sh
+# default
+MAKECMDGOALS := all
+# environment
+PLATFORMIO_CALLER = vscode
+# environment
+XMODIFIERS = @im=ibus
+# makefile (from 'Makefile', line 29)
+CPP_FILES = $(wildcard $(SRC_PATH)/*.cpp)
+# environment
+GJS_DEBUG_TOPICS = JS ERROR;JS LOG
+# environment
+SHLVL = 0
+# environment
+rvm_path = /home/pedrol3001/.rvm
+# environment
+MAKELEVEL := 0
+# default
+MAKE = $(MAKE_COMMAND)
+# environment
+PATH = /home/pedrol3001/.nvm/versions/node/v16.14.2/bin:/home/pedrol3001/.rvm/gems/ruby-2.6.5/bin:/home/pedrol3001/.rvm/gems/ruby-2.6.5@global/bin:/home/pedrol3001/.rvm/rubies/ruby-2.6.5/bin:/home/pedrol3001/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/lib/android-sdk/cmdline-tools/latest/bin:/home/pedrol3001/.rvm/bin:/home/pedrol3001/.fzf/bin:/home/pedrol3001/.rvm/bin
+# default
+MAKEFILES := 
+# environment
+LC_MONETARY = pt_BR.UTF-8
+# automatic
+^F = $(notdir $^)
+# makefile (from 'Makefile', line 26)
+DEP_PATH = dep
+# environment
+LC_TIME = pt_BR.UTF-8
+# makefile (from 'Makefile', line 33)
+OBJ_FILES = $(addprefix $(BIN_PATH)/,$(notdir $(CPP_FILES:.cpp=.o)))
+# environment
+INVOCATION_ID = f8010d4541e049b0957f56b06622add2
+# environment
+VSCODE_LOG_NATIVE = false
+# environment
+USERNAME = pedrol3001
+# makefile (from 'Makefile', line 25)
+BIN_PATH = bin
+# environment
+LC_TELEPHONE = pt_BR.UTF-8
+# automatic
+?F = $(notdir $?)
+# makefile (from 'Makefile', line 10)
+DEP_FLAGS = -M -MT $@ -MT $(BIN_PATH)/$(*F).o -MP -MF $@
+# environment
+NO_PROXY = 127.0.0.1
+# environment
+XDG_CURRENT_DESKTOP = Unity
+# environment
+LS_COLORS = 
+# automatic
++F = $(notdir $+)
+# environment
+LESS = -R
+# environment
+DESKTOP_SESSION = ubuntu
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
+# environment
+IRBRC = /home/pedrol3001/.rvm/rubies/ruby-2.6.5/.irbrc
+# 'override' directive
+GNUMAKEFLAGS := 
+# environment
+LOGNAME = pedrol3001
+# environment
+GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/code.desktop
+# environment
+PLATFORMIO_PATH = /home/pedrol3001/.platformio/python3/bin:/home/pedrol3001/.nvm/versions/node/v16.14.2/bin:/home/pedrol3001/.rvm/gems/ruby-2.6.5/bin:/home/pedrol3001/.rvm/gems/ruby-2.6.5@global/bin:/home/pedrol3001/.rvm/rubies/ruby-2.6.5/bin:/home/pedrol3001/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/lib/android-sdk/cmdline-tools/latest/bin:/home/pedrol3001/.rvm/bin:/home/pedrol3001/.fzf/bin:/home/pedrol3001/.rvm/bin
+# makefile
+.DEFAULT_GOAL := all
+# environment
+SYSTEMD_EXEC_PID = 4076
+# makefile (from 'Makefile', line 8)
+RM = rm -f
+# environment
+rvm_version = 1.29.12-next (master)
+# environment
+DISPLAY = :1
+# environment
+USER = pedrol3001
+# environment
+GTK_MODULES = gail:atk-bridge
+# environment
+DEFAULTS_PATH = /usr/share/gconf/ubuntu.default.path
+# default
+MAKE_VERSION := 4.3
+# environment
+MANAGERPID = 3774
+# environment
+LC_MEASUREMENT = pt_BR.UTF-8
+# environment
+GIO_LAUNCHED_DESKTOP_FILE_PID = 6515
+# makefile (from 'Makefile', line 32)
+DEP_FILES = $(addprefix $(DEP_PATH)/,$(addsuffix .d,$(FILE_NAMES)))
+# environment
+PAGER = less
+# environment
+_ = /usr/share/code/code
+# environment
+LC_PAPER = pt_BR.UTF-8
+# environment
+XDG_RUNTIME_DIR = /run/user/1000
+# environment
+GEM_HOME = /home/pedrol3001/.rvm/gems/ruby-2.6.5
+# environment
+GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
+# environment
+LC_CTYPE = pt_BR.UTF-8
+# makefile (from 'Makefile', line 19)
+DFLAGS = -ggdb -O0 -DDEBUG
+# environment
+NVM_CD_FLAGS = -q
+# environment
+JOURNAL_STREAM = 8:53525
+# environment
+XDG_SESSION_CLASS = user
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+PLATFORMIO_IDE = 2.4.3
+# environment
+HOME = /home/pedrol3001
+# environment
+QT_IM_MODULE = ibus
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# environment
+VSCODE_IPC_HOOK = /run/user/1000/vscode-9c886cb3-1.68.0-main.sock
+# environment
+IM_CONFIG_PHASE = 1
+# default
+.RECIPEPREFIX := 
+# automatic
+<F = $(notdir $<)
+# default
+SUFFIXES := 
+# default
+ 
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
+# environment
+rvm_prefix = /home/pedrol3001
+# environment
+XDG_MENU_PREFIX = gnome-
+# environment
+RUBY_VERSION = ruby-2.6.5
+# makefile (from 'Makefile', line 31)
+FILE_NAMES = $(sort $(notdir $(CPP_FILES:.cpp=)) $(notdir $(INC_FILES:.h=)))
+# environment
+GDMSESSION = ubuntu
+# environment
+LC_IDENTIFICATION = pt_BR.UTF-8
+# variable set hash-table stats:
+# Load=150/1024=15%, Rehash=0, Collisions=25/206=12%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# dep (device 66310, inode 14835979): No files, no impossibilities so far.
+# include (device 66310, inode 14836762): 9 files, no impossibilities.
+# src (device 66310, inode 14836760): 8 files, no impossibilities.
+# . (device 66310, inode 14836735): 16 files, no impossibilities.
+
+# 33 files, no impossibilities in 4 directories.
+
+# Implicit Rules
+
+bin/%.o: dep/%.d | folders
+#  recipe to execute (from 'Makefile', line 46):
+	$(COMPILER) $(INC_PATHS) $(addprefix $(SRC_PATH)/,$(notdir $(<:.d=.cpp))) -c $(FLAGS) -o $@
+
+dep/%.d: src/%.cpp | folders
+#  recipe to execute (from 'Makefile', line 50):
+	$(COMPILER) $(INC_PATHS) $< $(DEP_FLAGS) $(FLAGS)
+
+# 2 implicit rules, 0 (0.0%) terminal.
+# Files
+
+# Not a target:
+dep/sprite.d:
+#  Precious file (prerequisite of .PRECIOUS).
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+game: bin/game.o bin/main.o bin/music.o bin/penguin_state.o bin/sprite.o bin/state.o
+#  Implicit rule search has not been done.
+#  Last modified 2022-06-20 10:25:18.709159181
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/7=0%
+#  recipe to execute (from 'Makefile', line 42):
+	$(COMPILER) -o $@ $^ $(LINK_PATH) $(LIBS) $(FLAGS)
+
+# Not a target:
+dep/asset.d:
+#  Precious file (prerequisite of .PRECIOUS).
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+bin/main.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+.PRECIOUS: dep/SDL_include.d dep/asset.d dep/game.d dep/main.d dep/music.d dep/penguin_state.d dep/sprite.d dep/state.d
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+bin/penguin_state.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# makefile (from 'Makefile', line 52)
+debug: FLAGS += $(DFLAGS)
+debug: game
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+# variable set hash-table stats:
+# Load=1/32=3%, Rehash=0, Collisions=0/3=0%
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-20 10:25:09.525121285
+#  File has been updated.
+#  Successfully updated.
+
+clean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 56):
+	-$(RMDIR) $(DEP_PATH)
+	-$(RMDIR) $(BIN_PATH)
+	$(RM) $(EXEC)
+
+# Not a target:
+bin/state.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+dep/main.d:
+#  Precious file (prerequisite of .PRECIOUS).
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+dep/SDL_include.d:
+#  Precious file (prerequisite of .PRECIOUS).
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+bin/game.o: dep/game.d | folders
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'game'
+#  Last modified 2022-06-20 10:25:17.589154546
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/7=0%
+#  recipe to execute (from 'Makefile', line 46):
+	$(COMPILER) $(INC_PATHS) $(addprefix $(SRC_PATH)/,$(notdir $(<:.d=.cpp))) -c $(FLAGS) -o $@
+
+all: game
+#  Command line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/7=0%
+
+# Not a target:
+bin/music.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/game.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-20 10:11:27.423756349
+#  File has been updated.
+#  Successfully updated.
+
+dep/game.d: src/game.cpp | folders
+#  Precious file (prerequisite of .PRECIOUS).
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'game'
+#  Last modified 2022-06-20 10:25:17.385153701
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/7=0%
+#  recipe to execute (from 'Makefile', line 50):
+	$(COMPILER) $(INC_PATHS) $< $(DEP_FLAGS) $(FLAGS)
+
+.SECONDEXPANSION:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 61):
+	-include $$(DEP_FILES)
+
+# Not a target:
+bin/sprite.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+folders:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: ''
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := folders
+# automatic
+# * := 
+# automatic
+# < := 
+# automatic
+# + := 
+# automatic
+# % := 
+# automatic
+# ^ := 
+# automatic
+# ? := 
+# automatic
+# | := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=2/15=13%
+#  recipe to execute (from 'Makefile', line 67):
+	@mkdir -p $(DEP_PATH) $(BIN_PATH) $(INC_PATH) $(SRC_PATH)
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+.PHONY: clean folders debug
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+dep/state.d:
+#  Precious file (prerequisite of .PRECIOUS).
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+dep/penguin_state.d:
+#  Precious file (prerequisite of .PRECIOUS).
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+dep/music.d:
+#  Precious file (prerequisite of .PRECIOUS).
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# files hash-table stats:
+# Load=26/1024=3%, Rehash=0, Collisions=0/72=0%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 58 / storage = 570 B / avg = 9 B
+# current buf: size = 8162 B / used = 570 B / count = 58 / avg = 9 B
+
+# strcache performance: lookups = 99 / hit rate = 41%
+# hash-table stats:
+# Load=58/8192=1%, Rehash=0, Collisions=0/99=0%
+# Finished Make data base on Mon Jun 20 10:25:55 2022
+
+ 
