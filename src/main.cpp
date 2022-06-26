@@ -3,8 +3,8 @@
 #define HEIGHT 600
 
 #include "SDL_exception.h"
-#include "penguin_state.h"
-#include "game.h"
+#include "Penguin_state.h"
+#include "Game.h"
 
 #include <iostream>
 using namespace std;

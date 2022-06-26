@@ -1,5 +1,5 @@
 #include "SDL_exception.h"
-#include "music.h"
+#include "Music.h"
 
 Music::Music() : music(nullptr) {}
 

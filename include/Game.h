@@ -13,8 +13,8 @@
 #include "SDL_include.h"
 
 #include <string>
-#include "asset.h"
-#include "state.h"
+#include "Asset.h"
+#include "State.h"
 
 using namespace std;
 

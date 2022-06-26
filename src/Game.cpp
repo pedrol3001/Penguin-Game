@@ -1,4 +1,4 @@
-#include "game.h"
+#include "Game.h"
 #include "SDL_exception.h"
 
 #define FLAGS_IMG (IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF)

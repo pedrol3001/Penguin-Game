@@ -1,8 +1,8 @@
 #ifndef STATE_HPP
 #define STATE_HPP
 
-#include "sprite.h"
-#include "music.h"
+#include "Sprite.h"
+#include "Music.h"
 
 class State {
 public:

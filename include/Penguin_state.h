@@ -1,8 +1,8 @@
 #ifndef PENGUIN_STATE_HPP
 #define PENGUIN_STATE_HPP
 
-#include "sprite.h"
-#include "state.h"
+#include "Sprite.h"
+#include "State.h"
 
 class PenguinState: public State {
 public:

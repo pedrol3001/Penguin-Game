@@ -1,6 +1,6 @@
 #include "SDL_exception.h"
-#include "sprite.h"
-#include "game.h"
+#include "Sprite.h"
+#include "Game.h"
 
 #include <iostream>
 using namespace std;

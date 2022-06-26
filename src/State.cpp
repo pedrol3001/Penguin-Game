@@ -1,7 +1,7 @@
-#include "sprite.h"
-#include "music.h"
-#include "state.h"
-#include "game.h"
+#include "Sprite.h"
+#include "Music.h"
+#include "State.h"
+#include "Game.h"
 
 State::State() : quitRequested(false) {}
 

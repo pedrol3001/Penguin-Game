@@ -6,7 +6,7 @@
 #include "SDL_include.h"
 
 #include <string>
-#include "asset.h"
+#include "Asset.h"
 
 using namespace std;
 
