@@ -1,18 +1,23 @@
-#include "Sprite.h"
-#include "Music.h"
 #include "State.h"
-#include "Game.h"
 
 State::State() : quitRequested(false) {}
+
+State::~State() {
+  objectArray.clear();
+}
 
 bool State::QuitRequested() {
   return quitRequested;
 }
 
 void State::Update(float dt) {
-  quitRequested = SDL_QuitRequested();
+  Input();
+  for(auto& o : objectArray) o->Update(dt);
+  for(long unsigned int i = 0; i < objectArray.size(); i++) {
+    if (objectArray[i]->IsDead()) objectArray.erase(objectArray.begin()+i);
+  }
 }
 
 void State::Render() {
-  bg.Render(0, 0);
+  for(auto& o : objectArray) o->Render();
 }

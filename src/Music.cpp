@@ -1,9 +1,9 @@
 #include "SDL_exception.h"
 #include "Music.h"
 
-Music::Music() : music(nullptr) {}
+Music::Music(GameObject &associated) : Component(associated), music(nullptr) {}
 
-Music::Music(string file) : music(nullptr) {
+Music::Music(GameObject &associated, string file) : Component(associated), music(nullptr) {
   Open(file);
 }
 
@@ -24,8 +24,18 @@ void Music::Stop(int ms) {
 
 void Music::Open(string file) {
   music = Mix_LoadMUS(file.c_str());
+
+  if(music == nullptr) throw SDL_Exception("Failed to open music");
 }
 
 bool Music::IsOpen() {
   return music != nullptr;
+}
+
+void Music::Update(float dt){}
+
+void Music::Render(){}
+
+bool Music::Is(string type){
+  return type == "MUSIC";
 }

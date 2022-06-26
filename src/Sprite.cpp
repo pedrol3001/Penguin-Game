@@ -5,17 +5,22 @@
 #include <iostream>
 using namespace std;
 
-Sprite::Sprite() {
-  texture = nullptr;
-}
+Sprite::Sprite(GameObject& associated) : Component(associated), texture(nullptr){}
 
-Sprite::Sprite(string file) {
-  texture = nullptr;
+Sprite::Sprite(GameObject& associated, string file) : Sprite(associated) {
   Open(file);
 }
 
 Sprite::~Sprite() {
   if (texture != nullptr) SDL_DestroyTexture(texture);
+}
+
+int Sprite::GetWidth() {
+  return width;
+}
+
+int Sprite::GetHeight() {
+  return height;
 }
 
 void Sprite::Open(string file) {
@@ -24,7 +29,7 @@ void Sprite::Open(string file) {
   if(texture == nullptr) throw(SDL_Exception("Failed to load sprite"));
 
   SDL_QueryTexture(texture, nullptr, nullptr, &width, &height);
-  SetClip(0, 0, GetWidth(), GetHeight());
+  SetClip(0, 0, width, height);
 }
 
 bool Sprite::IsOpen(){
@@ -38,16 +43,17 @@ void Sprite::SetClip(int x, int y, int w, int h) {
   clipRect.h = h;
 }
 
-void Sprite::Render(int x, int y) {
-  SDL_Rect rec = { x, y, width, height};
+void Sprite::Render() {
+  int x = static_cast<int>(associated.box.x);
+  int y = static_cast<int>(associated.box.y);
+  SDL_Rect rec = {x, y, width, height};
 
   SDL_RenderCopy(Game::GetInstance().GetRenderer(), texture, &clipRect, &rec);
 }
 
-int Sprite::GetWidth() {
-  return width;
+void Sprite::Update(float dt) {}
+
+bool Sprite::Is(string type) {
+  return type == "SPRITE";
 }
 
-int Sprite::GetHeight() {
-  return height;
-}

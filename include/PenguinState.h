@@ -7,7 +7,12 @@
 class PenguinState: public State {
 public:
   PenguinState();
+  ~PenguinState();
+
   void LoadAssets();
+private:
+  void AddObject(int mouseX, int mouseY);
+  void Input();
 };
 
 #endif
