@@ -39,6 +39,6 @@ void GameObject::RemoveComponent(Component *cpt) {
 
 Component *GameObject::GetComponent(string type) {
   auto it = find_if(components.begin(), components.end(),[&type](unique_ptr<Component> &obj){ return obj->Is(type);});
-  if(it == components.end()) return nullptr;
-  return it->get();
+  if(it != components.end()) return it->get();;
+  return nullptr;
 }
