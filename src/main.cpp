@@ -1,4 +1,4 @@
-#define TITLE "Penguin"
+#define TITLE "Pedro Luis Chaves Rocha - 180054635"
 #define WIDTH 1024
 #define HEIGHT 600
 
