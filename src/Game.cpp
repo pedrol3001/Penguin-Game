@@ -7,17 +7,17 @@
 Game* Game::instance = nullptr;
 
 Game::Game(string title, int width, int height){
-  if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_TIMER) != 0) throw(SDL_Exception());
-  if ((IMG_Init(FLAGS_IMG) & FLAGS_IMG) != FLAGS_IMG) throw(SDL_Exception());
-  if ((Mix_Init(FLAGS_MIX) & FLAGS_MIX) != FLAGS_MIX) throw(SDL_Exception());
-  if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 1024) != 0) throw(SDL_Exception());
-  if (TTF_Init() != 0) throw(SDL_Exception());
+  if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_TIMER) != 0) throw(SDL_Exception("SDL_Init Failed"));
+  if ((IMG_Init(FLAGS_IMG) & FLAGS_IMG) != FLAGS_IMG) throw(SDL_Exception("SDL IMG_Init Failed"));
+  if ((Mix_Init(FLAGS_MIX) & FLAGS_MIX) != FLAGS_MIX) throw(SDL_Exception("SDL Mix_Init Failed"));
+  if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 1024) != 0) throw(SDL_Exception("SDL Mix_OpenAudio Failed"));
+  if (TTF_Init() != 0) throw(SDL_Exception("SDL TTF_Init Failed"));
 
   window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, 0);
-  if (window == nullptr) throw(SDL_Exception());
+  if (window == nullptr) throw(SDL_Exception("Failed to create window"));
 
   renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
-  if (renderer == nullptr) throw(SDL_Exception());
+  if (renderer == nullptr) throw(SDL_Exception("Failed to render window"));
 }
 
 void Game::Run(){

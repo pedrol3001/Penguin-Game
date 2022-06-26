@@ -13,7 +13,7 @@ Music::~Music() {
 }
 
 void Music::Play(int times) {
-    if (music == nullptr) throw SDL_Exception();
+    if (music == nullptr) throw SDL_Exception("Failed to play music");
 
     Mix_PlayMusic(music, times);
 }

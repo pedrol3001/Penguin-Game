@@ -16,14 +16,13 @@ Sprite::Sprite(string file) {
 }
 
 Sprite::~Sprite() {
-    if (texture != nullptr)
-        SDL_DestroyTexture(texture);
+    if (texture != nullptr) SDL_DestroyTexture(texture);
 }
 
 void Sprite::Open(string file) {
     if(IsOpen()) SDL_DestroyTexture(texture);
     texture = IMG_LoadTexture(Game::GetInstance().GetRenderer(), file.c_str());
-    if(texture == nullptr) throw(SDL_Exception());
+    if(texture == nullptr) throw(SDL_Exception("Failed to load sprite"));
 
     SDL_QueryTexture(texture, nullptr, nullptr, &width, &height);
     SetClip(0, 0, GetWidth(), GetHeight());
@@ -36,8 +35,8 @@ bool Sprite::IsOpen(){
 void Sprite::SetClip(int x, int y, int w, int h) {
     clipRect.x = x;
     clipRect.y = y;
-    clipRect.h = h;
     clipRect.w = w;
+    clipRect.h = h;
 }
 
 void Sprite::Render(int x, int y) {
