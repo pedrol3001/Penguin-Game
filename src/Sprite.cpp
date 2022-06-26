@@ -5,50 +5,49 @@
 #include <iostream>
 using namespace std;
 
-
 Sprite::Sprite() {
-    texture = nullptr;
+  texture = nullptr;
 }
 
 Sprite::Sprite(string file) {
-    texture = nullptr;
-    Open(file);
+  texture = nullptr;
+  Open(file);
 }
 
 Sprite::~Sprite() {
-    if (texture != nullptr) SDL_DestroyTexture(texture);
+  if (texture != nullptr) SDL_DestroyTexture(texture);
 }
 
 void Sprite::Open(string file) {
-    if(IsOpen()) SDL_DestroyTexture(texture);
-    texture = IMG_LoadTexture(Game::GetInstance().GetRenderer(), file.c_str());
-    if(texture == nullptr) throw(SDL_Exception("Failed to load sprite"));
+  if(IsOpen()) SDL_DestroyTexture(texture);
+  texture = IMG_LoadTexture(Game::GetInstance().GetRenderer(), file.c_str());
+  if(texture == nullptr) throw(SDL_Exception("Failed to load sprite"));
 
-    SDL_QueryTexture(texture, nullptr, nullptr, &width, &height);
-    SetClip(0, 0, GetWidth(), GetHeight());
+  SDL_QueryTexture(texture, nullptr, nullptr, &width, &height);
+  SetClip(0, 0, GetWidth(), GetHeight());
 }
 
 bool Sprite::IsOpen(){
-    return texture != nullptr;
+  return texture != nullptr;
 }
 
 void Sprite::SetClip(int x, int y, int w, int h) {
-    clipRect.x = x;
-    clipRect.y = y;
-    clipRect.w = w;
-    clipRect.h = h;
+  clipRect.x = x;
+  clipRect.y = y;
+  clipRect.w = w;
+  clipRect.h = h;
 }
 
 void Sprite::Render(int x, int y) {
-    SDL_Rect dst = { x, y, width, height};
+  SDL_Rect dst = { x, y, width, height};
 
-    SDL_RenderCopy(Game::GetInstance().GetRenderer(), texture, &clipRect, &dst);
+  SDL_RenderCopy(Game::GetInstance().GetRenderer(), texture, &clipRect, &dst);
 }
 
 int Sprite::GetWidth() {
-    return width;
+  return width;
 }
 
 int Sprite::GetHeight() {
-    return height;
+  return height;
 }

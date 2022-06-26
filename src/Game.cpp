@@ -21,12 +21,12 @@ Game::Game(string title, int width, int height){
 }
 
 void Game::Run(){
-    while(!GetState().QuitRequested()) {
-        GetState().Update(0);
-        GetState().Render();
-        SDL_RenderPresent(renderer);
-        SDL_Delay(33);
-    }
+  while(!GetState().QuitRequested()) {
+    GetState().Update(0);
+    GetState().Render();
+    SDL_RenderPresent(renderer);
+    SDL_Delay(33);
+  }
 }
 
 Game::~Game(){
@@ -41,14 +41,14 @@ Game::~Game(){
 
 Game& Game::GetInstance(){
   if(instance == nullptr){
-      instance = new Game(DEFAULT_TITLE, DEFAULT_WIDTH, DEFAULT_HEIGHT);
+    instance = new Game(DEFAULT_TITLE, DEFAULT_WIDTH, DEFAULT_HEIGHT);
   }
   return *instance;
 }
 
 Game& Game::GetInstance(string title, int width, int height) {
   if(instance == nullptr){
-      instance = new Game(title, width, height);
+    instance = new Game(title, width, height);
   }
   return *instance;
 }
@@ -62,5 +62,5 @@ State& Game::GetState(){
 }
 
 SDL_Renderer* Game::GetRenderer() {
-    return renderer;
+  return renderer;
 }

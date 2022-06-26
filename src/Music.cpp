@@ -4,28 +4,28 @@
 Music::Music() : music(nullptr) {}
 
 Music::Music(string file) : music(nullptr) {
-    Open(file);
+  Open(file);
 }
 
 Music::~Music() {
-    Stop(0);
-    Mix_FreeMusic(music);
+  Stop(0);
+  Mix_FreeMusic(music);
 }
 
 void Music::Play(int times) {
-    if (music == nullptr) throw SDL_Exception("Failed to play music");
+  if (music == nullptr) throw SDL_Exception("Failed to play music");
 
-    Mix_PlayMusic(music, times);
+  Mix_PlayMusic(music, times);
 }
 
 void Music::Stop(int ms) {
-    Mix_FadeOutMusic(ms);
+  Mix_FadeOutMusic(ms);
 }
 
 void Music::Open(string file) {
-    music = Mix_LoadMUS(file.c_str());
+  music = Mix_LoadMUS(file.c_str());
 }
 
 bool Music::IsOpen() {
-    return music != nullptr;
+  return music != nullptr;
 }
