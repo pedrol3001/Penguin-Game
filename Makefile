@@ -5,7 +5,7 @@ LIBS = -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -lm
 DEP_FLAGS = -M -MT $@ -MT $(BIN_PATH)/$(*F).o -MP -MF $@
 INC_PATHS = -I$(INC_PATH) $(addprefix -I,$(SDL_INC_PATH))
 
-FLAGS = -std=c++11 -Wall
+FLAGS = -std=c++20 -Wall
 DFLAGS = -ggdb -O0 -DDEBUG
 RFLAGS = -O3 -mtune=native
 

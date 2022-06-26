@@ -34,10 +34,11 @@ void GameObject::AddComponent(Component *cpt) {
 }
 
 void GameObject::RemoveComponent(Component *cpt) {
-  components.erase(std::remove(components.begin(), components.end(), *new unique_ptr<Component>(cpt)), components.end());
+  erase_if(components, [&cpt](unique_ptr<Component> &obj){ return obj.get() == cpt; });
 }
 
 Component *GameObject::GetComponent(string type) {
-  for(auto& c : components) if (c->Is(type)) return c.get();
-  return nullptr;
+  auto it = find_if(components.begin(), components.end(),[&type](unique_ptr<Component> &obj){ return obj->Is(type);});
+  if(it == components.end()) return nullptr;
+  return it->get();
 }
