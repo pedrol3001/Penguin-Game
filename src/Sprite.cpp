@@ -39,9 +39,9 @@ void Sprite::SetClip(int x, int y, int w, int h) {
 }
 
 void Sprite::Render(int x, int y) {
-  SDL_Rect dst = { x, y, width, height};
+  SDL_Rect rec = { x, y, width, height};
 
-  SDL_RenderCopy(Game::GetInstance().GetRenderer(), texture, &clipRect, &dst);
+  SDL_RenderCopy(Game::GetInstance().GetRenderer(), texture, &clipRect, &rec);
 }
 
 int Sprite::GetWidth() {
