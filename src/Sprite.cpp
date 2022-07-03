@@ -2,7 +2,6 @@
 #include "Sprite.h"
 #include "Game.h"
 
-#include <iostream>
 using namespace std;
 
 Sprite::Sprite(GameObject& associated) : Component(associated), texture(nullptr){}
