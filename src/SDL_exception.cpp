@@ -10,6 +10,6 @@ SDL_Exception::SDL_Exception(string msg){
   message = (msg + " - " + string(sdl_msg));
 }
 
-const char* SDL_Exception::what () {
+const char* SDL_Exception::what() {
   return message.c_str();
 }

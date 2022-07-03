@@ -13,8 +13,8 @@ int main (int argc, char** argv) {
   try{
     Game::GetInstance(TITLE, WIDTH, HEIGHT).SetState(new PenguinState());
     Game::GetInstance().Run();
-  }catch(std::exception &err){
-    cout << err.what() << endl;
+  }catch(SDL_Exception& e){
+    cout << e.what() << endl;
   }
   return 0;
 }
