@@ -29,10 +29,10 @@ public:
   bool Is(string type);
 
 private:
-  SDL_Texture* texture;
   int width;
   int height;
   SDL_Rect clipRect;
+  SDL_Texture* texture;
 };
 
 #endif

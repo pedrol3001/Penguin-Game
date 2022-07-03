@@ -10,7 +10,7 @@ class GameObject;
 
 class Component {
 public:
-  explicit Component(GameObject &associated);
+  Component(GameObject &associated);
   virtual ~Component();
 
   virtual void Render() = 0;
