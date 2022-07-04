@@ -13,6 +13,7 @@ using namespace std;
 
 class Sprite : public Asset, public Component {
 public:
+  Sprite(string file);
   Sprite(GameObject& associated);
   Sprite(GameObject& associated, string file);
   ~Sprite();
@@ -25,6 +26,7 @@ public:
   int GetHeight();
 
   void Render();
+  void Render(int x, int y);
   void Update(float dt);
   bool Is(string type);
 

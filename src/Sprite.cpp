@@ -1,8 +1,9 @@
 #include "SDL_exception.h"
 #include "Sprite.h"
 #include "Game.h"
+#include "NullGameObject.h"
 
-using namespace std;
+Sprite::Sprite(string file) : Sprite(* new NullGameObject(), file) {}
 
 Sprite::Sprite(GameObject& associated) : Component(associated), texture(nullptr){}
 
@@ -43,9 +44,11 @@ void Sprite::SetClip(int x, int y, int w, int h) {
 }
 
 void Sprite::Render() {
-  int x = static_cast<int>(associated.box.x);
-  int y = static_cast<int>(associated.box.y);
-  SDL_Rect rec = {x, y, width, height};
+  Render(static_cast<int>(associated.box.x), static_cast<int>(associated.box.y));
+}
+
+void Sprite::Render(int x, int y) {
+  SDL_Rect rec = {x, y, clipRect.w, clipRect.h};
 
   SDL_RenderCopy(Game::GetInstance().GetRenderer(), texture, &clipRect, &rec);
 }
