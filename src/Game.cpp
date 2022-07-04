@@ -16,7 +16,7 @@ Game::Game(string title, int width, int height){
   window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, 0);
   if (window == nullptr) throw(SDL_Exception("Failed to create window"));
 
-  renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
+  renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
   if (renderer == nullptr) throw(SDL_Exception("Failed to render window"));
 }
 
