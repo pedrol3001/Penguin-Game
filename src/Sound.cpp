@@ -1,4 +1,5 @@
 #include "Sound.h"
+#include "Resources.h"
 #include "SDL_exception.h"
 
 Sound::Sound(GameObject &associated) : Component(associated), chunk(nullptr) {}
@@ -9,7 +10,6 @@ Sound::Sound(GameObject &associated, string file) : Sound(associated){
 
 Sound::~Sound(){
   Stop();
-  Mix_FreeChunk(chunk);
 }
 
 void Sound::Play(int times){
@@ -22,8 +22,7 @@ void Sound::Stop(){
 }
 
 void Sound::Open(string file){
-  chunk = Mix_LoadWAV(file.c_str());
-  if(chunk == nullptr) throw SDL_Exception("Failed to open sound");
+  chunk = Resources::GetInstance().GetSound(file);
 }
 
 bool Sound::IsOpen(){

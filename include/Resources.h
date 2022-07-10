@@ -12,7 +12,14 @@
 using namespace std;
 
 class Resources {
+private:
+  Resources();
+  static Resources* instance;
 public:
+  static Resources& GetInstance();
+  Resources(Resources &other) = delete;
+  void operator=(const Resources &) = delete;
+
   SDL_Texture* GetImage(string file);
   void ClearImages();
 

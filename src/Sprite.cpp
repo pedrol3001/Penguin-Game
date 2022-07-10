@@ -1,6 +1,7 @@
-#include "SDL_exception.h"
-#include "Sprite.h"
 #include "Game.h"
+#include "Sprite.h"
+#include "Resources.h"
+#include "SDL_exception.h"
 #include "NullGameObject.h"
 
 Sprite::Sprite(string file) : Sprite(* new NullGameObject(), file) {}
@@ -11,9 +12,7 @@ Sprite::Sprite(GameObject& associated, string file) : Sprite(associated) {
   Open(file);
 }
 
-Sprite::~Sprite() {
-  if (texture != nullptr) SDL_DestroyTexture(texture);
-}
+Sprite::~Sprite() {}
 
 int Sprite::GetWidth() {
   return width;
@@ -24,9 +23,7 @@ int Sprite::GetHeight() {
 }
 
 void Sprite::Open(string file) {
-  if(IsOpen()) SDL_DestroyTexture(texture);
-  texture = IMG_LoadTexture(Game::GetInstance().GetRenderer(), file.c_str());
-  if(texture == nullptr) throw(SDL_Exception("Failed to load sprite"));
+  texture = Resources::GetInstance().GetImage(file);
 
   SDL_QueryTexture(texture, nullptr, nullptr, &width, &height);
   SetClip(0, 0, width, height);

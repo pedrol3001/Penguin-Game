@@ -19,7 +19,7 @@
 using namespace std;
 
 class Game {
-protected:
+private:
   Game(string title, int width, int height);
   ~Game();
   static Game* instance;

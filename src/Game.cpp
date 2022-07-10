@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "Resources.h"
 #include "SDL_exception.h"
 
 #define FLAGS_IMG (IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF)
@@ -27,6 +28,9 @@ void Game::Run(){
     SDL_RenderPresent(renderer);
     SDL_Delay(33);
   }
+  Resources::GetInstance().ClearMusics();
+  Resources::GetInstance().ClearSounds();
+  Resources::GetInstance().ClearImages();
 }
 
 Game::~Game(){
