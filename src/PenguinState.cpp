@@ -5,6 +5,8 @@
 #include "Face.h"
 #include "Sound.h"
 #include "Game.h"
+#include "TileSet.h"
+#include "TileMap.h"
 
 PenguinState::PenguinState() : State() {
   LoadAssets();
@@ -13,13 +15,22 @@ PenguinState::PenguinState() : State() {
 PenguinState::~PenguinState() {}
 
 void PenguinState::LoadAssets(){
-  GameObject *go = new GameObject(&objectArray);
-	Sprite *backgroundSprite = new Sprite(*go, "assets/img/ocean.jpg");
-	Music *backgroundMusic = new Music(*go, "assets/audio/stageState.ogg");
-  go->AddComponent(backgroundSprite);
-	go->AddComponent(backgroundMusic);
-
+  GameObject *bg = new GameObject(&objectArray);
+	Sprite *backgroundSprite = new Sprite(*bg, "assets/img/ocean.jpg");
+	Music *backgroundMusic = new Music(*bg, "assets/audio/stageState.ogg");
+  bg->AddComponent(backgroundSprite);
+	bg->AddComponent(backgroundMusic);
 	backgroundMusic->Play();
+
+	GameObject *tm = new GameObject(&objectArray);
+	tm->box.x = 0;
+	tm->box.y = 0;
+	tm->box.w = 1024;
+	tm->box.h = 600;
+
+	TileSet *set = new TileSet(64, 64, "assets/img/tileset.png");
+	TileMap *map = new TileMap(*tm, "assets/map/tileMap.txt", set);
+	tm->AddComponent(map);
 }
 
 void PenguinState::AddObject(int mouseX, int mouseY) {
