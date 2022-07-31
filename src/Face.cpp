@@ -1,6 +1,8 @@
 #include "Face.h"
 #include "Sprite.h"
 #include "Sound.h"
+#include "InputManager.h"
+#include "Camera.h"
 
 Face::Face(GameObject &associated) : Component(associated), hitPoints(30) {}
 
@@ -16,7 +18,15 @@ void Face::Damage(int damage){
   associated.RemoveComponent(sprite);
 }
 
-void Face::Update(float dt){}
+void Face::Update(float dt){
+  InputManager inputManager = InputManager::GetInstance();
+
+  bool mouseOver = associated.box.Contains({inputManager.GetMouseX() + Camera::pos.x, inputManager.GetMouseY() + Camera::pos.y});
+
+  if(inputManager.MousePress(LEFT_MOUSE_BUTTON) && mouseOver){
+    Damage(rand() % 10 + 10);
+  }
+}
 
 void Face::Render(){}
 

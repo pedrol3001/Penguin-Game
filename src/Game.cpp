@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Resources.h"
 #include "SDL_exception.h"
+#include "InputManager.h"
 
 #define FLAGS_IMG (IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF)
 #define FLAGS_MIX /*MIX_INIT_MP3 |*/ MIX_INIT_OGG
@@ -19,11 +20,16 @@ Game::Game(string title, int width, int height){
 
   renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
   if (renderer == nullptr) throw(SDL_Exception("Failed to render window"));
+
+  this->width = width;
+  this->height =  height;
 }
 
 void Game::Run(){
   while(!GetState().QuitRequested()) {
-    GetState().Update(0);
+    CalculateDeltaTime();
+    InputManager::GetInstance().Update();
+    GetState().Update(dt);
     GetState().Render();
     SDL_RenderPresent(renderer);
     SDL_Delay(33);
@@ -67,4 +73,22 @@ State& Game::GetState(){
 
 SDL_Renderer* Game::GetRenderer() {
   return renderer;
+}
+
+int Game::GetWidth(){
+  return width;
+}
+
+int Game::GetHeight(){
+  return height;
+}
+
+void Game::CalculateDeltaTime(){
+  int ticks = SDL_GetTicks();
+  dt = (ticks - frameStart)/1000.0f;
+  frameStart = ticks;
+}
+
+float Game::GetDeltaTime(){
+  return dt;
 }

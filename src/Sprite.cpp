@@ -3,6 +3,7 @@
 #include "Resources.h"
 #include "SDL_exception.h"
 #include "NullGameObject.h"
+#include "Camera.h"
 
 Sprite::Sprite(string file) : Sprite(* new NullGameObject(), file) {}
 
@@ -41,7 +42,7 @@ void Sprite::SetClip(int x, int y, int w, int h) {
 }
 
 void Sprite::Render() {
-  Render(static_cast<int>(associated.box.x), static_cast<int>(associated.box.y));
+  Render(static_cast<int>(associated.box.x - Camera::pos.x), static_cast<int>(associated.box.y - Camera::pos.y));
 }
 
 void Sprite::Render(int x, int y) {

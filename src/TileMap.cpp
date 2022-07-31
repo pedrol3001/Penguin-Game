@@ -3,6 +3,7 @@
 #include "SDL_exception.h"
 #include <fstream>
 #include <iostream>
+#include "Camera.h"
 
 using namespace std;
 
@@ -71,7 +72,7 @@ int TileMap::GetDepth() {
 
 void TileMap::Render() {
   for (int i = 0; i < mapDepth; i++) {
-    RenderLayer(i, static_cast<int>(associated.box.x), static_cast<int>(associated.box.y));
+    RenderLayer(i, Camera::pos.x, Camera::pos.y);
   }
 }
 

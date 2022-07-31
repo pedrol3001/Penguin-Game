@@ -1,4 +1,5 @@
 #include "State.h"
+#include "Camera.h"
 
 State::State() : quitRequested(false) {}
 
@@ -11,6 +12,7 @@ bool State::QuitRequested() {
 }
 
 void State::Update(float dt) {
+  Camera::Update(dt);
   Input();
   for(auto& o : objectArray) o->Update(dt);
   for(long unsigned int i = 0; i < objectArray.size(); i++) {
