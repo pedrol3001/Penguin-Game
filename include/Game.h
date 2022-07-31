@@ -37,10 +37,21 @@ public:
   SDL_Renderer* GetRenderer();
   void Run();
 
+  void CalculateDeltaTime();
+  float GetDeltaTime();
+
+  int GetWidth();
+  int GetHeight();
+
 private:
   SDL_Window* window;
   SDL_Renderer* renderer;
   State* state;
+
+  int width, height;
+
+  int frameStart;
+  float dt;
 };
 
 #endif

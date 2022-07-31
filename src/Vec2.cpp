@@ -8,6 +8,10 @@ Vec2 Vec2::operator+(const Vec2& vec)  {
   return Vec2(x + vec.x, y + vec.y);
 }
 
+Vec2 Vec2::operator+=(const Vec2 &vec) {
+  return *this = *this + vec;
+}
+
 Vec2 Vec2::operator-(const Vec2& vec)  {
   return Vec2(x - vec.x, y - vec.y);
 }

@@ -9,6 +9,7 @@ public:
   Vec2(float x, float y);
 
   Vec2 operator+(const Vec2& vec);
+  Vec2 operator+=(const Vec2 &vec);
   Vec2 operator-(const Vec2& vec);
   Vec2 operator*(const int& esc);
 
