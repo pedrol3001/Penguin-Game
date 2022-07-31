@@ -6,10 +6,10 @@
 
 #include <unordered_map>
 
-#define LEFT_ARROW_KEY      SDLK_LEFT
-#define RIGHT_ARROW_KEY     SDLK_RIGHT
 #define UP_ARROW_KEY        SDLK_UP
 #define DOWN_ARROW_KEY      SDLK_DOWN
+#define LEFT_ARROW_KEY      SDLK_LEFT
+#define RIGHT_ARROW_KEY     SDLK_RIGHT
 #define SPACE_BAR_KEY       SDLK_SPACE
 #define ESCAPE_KEY          SDLK_ESCAPE
 #define LEFT_MOUSE_BUTTON   SDL_BUTTON_LEFT
