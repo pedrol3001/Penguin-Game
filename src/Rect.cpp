@@ -8,8 +8,16 @@ Rect Rect::operator+(const Vec2& vec)  {
   return Rect(x + vec.x, y + vec.y, w, h);
 }
 
+Rect Rect::operator+=(const Vec2& vec)  {
+  return *this = *this + vec;
+}
+
 Rect Rect::operator-(const Vec2& vec)  {
   return Rect(x - vec.x, y - vec.y, w, h);
+}
+
+Rect Rect::operator-=(const Vec2& vec)  {
+  return *this = *this - vec;
 }
 
 Vec2 Rect::Center() {
