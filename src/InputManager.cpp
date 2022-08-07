@@ -28,7 +28,7 @@ void InputManager::Update(){
       mouseState[event.button.button] = (event.type == SDL_MOUSEBUTTONDOWN);
       mouseUpdate[event.button.button] = updateCounter;
     }
-    else if(event.button.button == SDL_QUIT){
+    if(event.type == SDL_QUIT){
       quitRequested = true;
     }
   }
