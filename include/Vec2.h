@@ -11,7 +11,8 @@ public:
   Vec2 operator+(const Vec2& vec);
   Vec2 operator+=(const Vec2 &vec);
   Vec2 operator-(const Vec2& vec);
-  Vec2 operator*(const int& esc);
+  Vec2 operator-=(const Vec2& vec);
+  Vec2 operator*(const float& esc);
 
   Vec2 Normalized();
   float Magnitude();

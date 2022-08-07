@@ -16,7 +16,11 @@ Vec2 Vec2::operator-(const Vec2& vec)  {
   return Vec2(x - vec.x, y - vec.y);
 }
 
-Vec2 Vec2::operator*(const int& esc)  {
+Vec2 Vec2::operator-=(const Vec2& vec)  {
+  return *this = *this - vec;
+}
+
+Vec2 Vec2::operator*(const float& esc)  {
   return Vec2(x * esc, y * esc);
 }
 
@@ -33,7 +37,7 @@ float Vec2::Dist(Vec2 vec) {
 }
 
 float Vec2::XInclination() {
-  return atan2(x, y);
+  return atan2(y, x);
 }
 
 float Vec2::VInclination(Vec2 vec) {
