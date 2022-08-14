@@ -30,9 +30,15 @@ public:
   void Update(float dt);
   bool Is(string type);
 
+  void SetScaleX(float scaleVal);
+  void SetScaleY(float scaleVal);
+  void SetScale(float scaleX, float scaleY);
+  Vec2 GetScale();
+
 private:
   int width;
   int height;
+  Vec2 scale;
   SDL_Rect clipRect;
   SDL_Texture* texture;
 };

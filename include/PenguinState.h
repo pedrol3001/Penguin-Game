@@ -9,10 +9,8 @@ public:
   PenguinState();
   ~PenguinState();
 
-  void LoadAssets();
 private:
-  void AddObject(int mouseX, int mouseY);
-  void Input();
+  void LoadAssets();
 };
 
 #endif

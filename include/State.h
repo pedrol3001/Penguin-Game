@@ -10,16 +10,20 @@ public:
   State();
   virtual ~State();
 
-  virtual void Input() = 0;
-  virtual void AddObject(int mouseX, int mouseY) = 0;
-  virtual void LoadAssets() = 0;
-
   bool QuitRequested();
   void Update(float dt);
   void Render();
+
+  void Start();
+  weak_ptr<GameObject> AddObject(GameObject *go);
+  weak_ptr< GameObject > GetObjectPtr(GameObject *go);
+
 protected:
+  virtual void LoadAssets() = 0;
+
+  bool started;
   bool quitRequested;
-  vector<unique_ptr<GameObject>>objectArray;
+  vector<shared_ptr<GameObject>> objectArray;
 };
 
 #endif

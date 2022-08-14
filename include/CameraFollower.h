@@ -3,8 +3,6 @@
 
 #include  "Component.h"
 
-#define CAMERA_FOLLOWER_TYPE "CameraFollower"
-
 class CameraFollower : public Component {
 public:
   CameraFollower(GameObject &associated);

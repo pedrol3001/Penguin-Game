@@ -4,7 +4,6 @@
 #include <vector>
 #include <string>
 #include <memory>
-#include <vector>
 #include "Rect.h"
 #include "Component.h"
 
@@ -15,9 +14,10 @@ class Component;
 class GameObject {
 public:
   GameObject();
-  GameObject(vector<unique_ptr<GameObject>> *objectArray);
+  GameObject(vector<shared_ptr<GameObject>> *objectArray);
   ~GameObject();
 
+  void Start();
   void Update(float dt);
   void Render();
   bool IsDead();
@@ -27,8 +27,10 @@ public:
   Component* GetComponent(string type);
 
   Rect box;
+  double angleDeg;
 private:
   vector<unique_ptr<Component>> components;
+  bool started;
   bool isDead;
 };
 
