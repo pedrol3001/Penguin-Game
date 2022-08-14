@@ -17,7 +17,7 @@ PenguinState::PenguinState() : State() {
 
 	GameObject *alien = new GameObject(&objectArray);
 	alien->AddComponent(new Alien(*alien, 5));
-	alien->box += {512 + alien->box.w/2, 400 + alien->box.h/2};
+	alien->box += {512 + alien->box.w/2, 200 + alien->box.h/2};
 }
 
 PenguinState::~PenguinState() {}
