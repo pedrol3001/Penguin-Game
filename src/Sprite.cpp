@@ -7,20 +7,22 @@
 
 Sprite::Sprite(string file) : Sprite(* new NullGameObject(), file) {}
 
-Sprite::Sprite(GameObject& associated) : Component(associated), texture(nullptr){}
+Sprite::Sprite(GameObject& associated) : Component(associated), scale(1, 1), texture(nullptr){}
 
 Sprite::Sprite(GameObject& associated, string file) : Sprite(associated) {
   Open(file);
+  associated.box.w = width;
+  associated.box.h = height;
 }
 
 Sprite::~Sprite() {}
 
 int Sprite::GetWidth() {
-  return width;
+  return width * scale.x;
 }
 
 int Sprite::GetHeight() {
-  return height;
+  return height * scale.y;
 }
 
 void Sprite::Open(string file) {
@@ -41,14 +43,29 @@ void Sprite::SetClip(int x, int y, int w, int h) {
   clipRect.h = h;
 }
 
+void Sprite::SetScaleX(float scaleVal){
+  scale.x = scaleVal;
+  associated.box.w = width * scaleVal;
+  associated.box.x = associated.box.Center().x - associated.box.w / 2;
+}
+void Sprite::SetScaleY(float scaleVal){
+  scale.y = scaleVal;
+  associated.box.h = height * scaleVal;
+  associated.box.y = associated.box.Center().y - associated.box.h / 2;
+}
+
+void Sprite::SetScale(float scaleX, float scaleY) {
+  if(scaleX != 0) SetScaleX(scaleX);
+  if(scaleY != 0) SetScaleY(scaleY);
+}
+
 void Sprite::Render() {
   Render(static_cast<int>(associated.box.x - Camera::pos.x), static_cast<int>(associated.box.y - Camera::pos.y));
 }
 
 void Sprite::Render(int x, int y) {
-  SDL_Rect rec = {x, y, clipRect.w, clipRect.h};
-
-  SDL_RenderCopy(Game::GetInstance().GetRenderer(), texture, &clipRect, &rec);
+  SDL_Rect rec = {x, y, static_cast<int>(clipRect.w * scale.x), static_cast<int>(clipRect.h * scale.y)};
+  SDL_RenderCopyEx(Game::GetInstance().GetRenderer(), texture, &clipRect, &rec, associated.angleDeg, nullptr , SDL_FLIP_NONE);
 }
 
 void Sprite::Update(float dt) {}

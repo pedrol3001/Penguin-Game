@@ -1,11 +1,9 @@
 #include <algorithm>
 #include "GameObject.h"
 
-#include <algorithm>
+GameObject::GameObject() : angleDeg(0), started(false), isDead(false){}
 
-GameObject::GameObject() : isDead(false) {}
-
-GameObject::GameObject(vector<unique_ptr<GameObject>> *objectArray) : GameObject(){
+GameObject::GameObject(vector<shared_ptr<GameObject>> *objectArray) : GameObject(){
   objectArray->emplace_back(this);
 }
 
@@ -13,8 +11,15 @@ GameObject::~GameObject() {
   components.clear();
 }
 
+void GameObject::Start(){
+  for(auto& c : components) c->Start();
+  started = true;
+}
+
 void GameObject::Update(float dt) {
-  for(auto& c : components) c->Update(dt);
+  for(auto& c : components) {
+    c->Update(dt);
+  }
 }
 
 void GameObject::Render() {
@@ -31,6 +36,7 @@ void GameObject::RequestDelete() {
 
 void GameObject::AddComponent(Component *cpt) {
   components.emplace_back(cpt);
+  if(started) cpt->Start();
 }
 
 void GameObject::RemoveComponent(Component *cpt) {

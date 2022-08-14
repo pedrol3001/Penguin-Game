@@ -26,6 +26,7 @@ Game::Game(string title, int width, int height){
 }
 
 void Game::Run(){
+  GetState().Start();
   while(!GetState().QuitRequested()) {
     CalculateDeltaTime();
     InputManager::GetInstance().Update();
