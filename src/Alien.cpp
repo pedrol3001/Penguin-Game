@@ -5,6 +5,7 @@
 #include "Camera.h"
 #include "Minion.h"
 #include "Game.h"
+#include <cstdlib>
 
 Alien::Alien(GameObject &associated, int nMinions) : Component(associated), speed({0, 0}), hp(50) {
   associated.AddComponent(new Sprite(associated, "assets/img/alien.png"));
@@ -31,14 +32,15 @@ void Alien::Update(float dt) {
   associated.angleDeg -= 5;
 
   InputManager inputManager = InputManager::GetInstance();
-  Vec2 mouse = inputManager.GetMouse();
+  int mouseX = inputManager.GetMouseX();
+  int mouseY = inputManager.GetMouseY();
 
   if(inputManager.MousePress(LEFT_MOUSE_BUTTON)){
-    taskQueue.push(*new Action(Action::SHOOT, mouse.x , mouse.y));
+    taskQueue.push(*new Action(Action::SHOOT, mouseX , mouseY));
   }
   if(inputManager.MousePress(RIGHT_MOUSE_BUTTON)){
     taskQueue.swap(*new queue<Action>());
-    taskQueue.push(*new Action(Action::MOVE, mouse.x, mouse.y));
+    taskQueue.push(*new Action(Action::MOVE, mouseX, mouseY));
   }
 
   if (taskQueue.empty()) return;
@@ -46,21 +48,23 @@ void Alien::Update(float dt) {
   Action action = taskQueue.front();
 
   if(action.type == Action::MOVE){
-    Vec2 speed = { 500 * dt, 0 };
-    Vec2 movement = action.pos - Vec2(associated.box.x + (associated.box.w / 2), associated.box.y + (associated.box.h / 2));
-    Vec2 direction = speed.Rotate(movement.XInclination());
+    taskQueue.pop();
+    Vec2 destination = action.pos - Vec2(associated.box.x + (associated.box.w / 2), associated.box.y + (associated.box.h / 2));
+    Vec2 speed = Vec2(400 * dt, 0);
+    Vec2 direction = speed.Rotate(destination.XInclination());
 
-    if(movement.Magnitude() >= direction.Magnitude()){
-      associated.box +=  direction;
-    } else {
-      taskQueue.pop();
+    associated.box += direction;
+
+    if(destination.Magnitude() >= direction.Magnitude()){
+      taskQueue.push(*new Action(Action::MOVE,action.pos.x, action.pos.y));
+      action = taskQueue.front();
     }
   }
-  if(action.type == Action::SHOOT){
-    Minion* minion = dynamic_cast<Minion*>(minionArray[0].lock()->GetComponent("MINION"));
-    minion->Shoot(mouse);
 
+  if(action.type == Action::SHOOT){
     taskQueue.pop();
+    Minion* minion = dynamic_cast<Minion*>(minionArray[rand() % minionArray.size()].lock()->GetComponent("MINION"));
+    minion->Shoot(Vec2(mouseX, mouseY));
   }
 }
 

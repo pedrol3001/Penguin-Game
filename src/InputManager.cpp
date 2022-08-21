@@ -14,11 +14,10 @@ InputManager::InputManager() : quitRequested(false), updateCounter(0), mouseX(0)
 InputManager::~InputManager() = default;
 
 void InputManager::Update(){
-  SDL_Event event;
-
   SDL_GetMouseState(&mouseX, &mouseY);
   updateCounter++;
 
+  SDL_Event event;
   while (SDL_PollEvent(&event)) {
     if((event.type == SDL_KEYDOWN || event.type == SDL_KEYUP) && !event.key.repeat){
       keyState[event.key.keysym.sym] = (event.type == SDL_KEYDOWN);
@@ -64,10 +63,6 @@ int InputManager::GetMouseX(){
 
 int InputManager::GetMouseY(){
   return mouseY;
-}
-
-Vec2 InputManager::GetMouse() {
-  return {mouseX + Camera::pos.x, mouseY + Camera::pos.y};
 }
 
 bool InputManager::QuitRequested(){

@@ -38,7 +38,6 @@ public:
 
   int GetMouseX();
   int GetMouseY();
-  Vec2 GetMouse();
 
   bool QuitRequested();
 

@@ -16,42 +16,31 @@ void Camera::Unfollow(){
 
 void Camera::Update(float dt){
   if (focus != nullptr){
-    pos = {focus->box.x - Game::GetInstance().GetWidth() / 2, focus->box.y - Game::GetInstance().GetHeight() / 2};
+    float x = focus->box.x - Game::GetInstance().GetWidth() / 2;
+    float y = focus->box.y - Game::GetInstance().GetHeight() / 2;
+    pos = Vec2(x, y);
   }
   else{
-    InputManager inputManager = InputManager::GetInstance();
+    Vec2 speed(0, 0);
 
-    speed = {0, 0};
-    Vec2 dir = {CAMERA_SPEED * dt, 0};
+    InputManager inputManager = InputManager::GetInstance();
 
     bool up_pressed = inputManager.IsKeyDown(UP_ARROW_KEY);
     bool down_pressed = inputManager.IsKeyDown(DOWN_ARROW_KEY);
     bool right_pressed = inputManager.IsKeyDown(RIGHT_ARROW_KEY);
     bool left_pressed = inputManager.IsKeyDown(LEFT_ARROW_KEY);
 
-    if (right_pressed && down_pressed){
-      speed = dir.Rotate(M_PI / 4);
+    if(up_pressed){
+     speed += Vec2(0, -CAMERA_SPEED * dt);
     }
-    else if (left_pressed && down_pressed){
-      speed = dir.Rotate(M_PI * 3 / 4);
+    if(down_pressed){
+      speed += Vec2(0, CAMERA_SPEED * dt);
     }
-    else if (left_pressed && up_pressed){
-      speed = dir.Rotate(M_PI * -3 / 4);
+    if(right_pressed){
+      speed += Vec2(CAMERA_SPEED * dt, 0);
     }
-    else if (right_pressed && up_pressed){
-      speed = dir.Rotate(M_PI / -4);
-    }
-    else if (right_pressed){
-      speed = dir;
-    }
-    else if (down_pressed){
-      speed = dir.Rotate(M_PI / 2);
-    }
-    else if (left_pressed){
-      speed = dir.Rotate(M_PI);
-    }
-    else if (up_pressed){
-      speed = dir.Rotate(M_PI / -2);
+    if(left_pressed){
+      speed += Vec2(-CAMERA_SPEED * dt, 0);
     }
 
     pos += speed;

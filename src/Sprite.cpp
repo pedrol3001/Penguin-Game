@@ -64,7 +64,7 @@ void Sprite::Render() {
 }
 
 void Sprite::Render(int x, int y) {
-  SDL_Rect rec = {x, y, static_cast<int>(clipRect.w * scale.x), static_cast<int>(clipRect.h * scale.y)};
+  SDL_Rect rec(x, y, static_cast<int>(clipRect.w * scale.x), static_cast<int>(clipRect.h * scale.y));
   SDL_RenderCopyEx(Game::GetInstance().GetRenderer(), texture, &clipRect, &rec, associated.angleDeg, nullptr , SDL_FLIP_NONE);
 }
 

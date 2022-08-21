@@ -16,8 +16,9 @@ void Minion::Update(float dt) {
   arc += (M_PI / 64);
   Vec2 pos = Vec2(200, 0).Rotate(arc);
 
-  associated.angleDeg = pos.XInclination() * 180 / M_PI;
   associated.box += (pos - associated.box.Center() + alienCenter.box.Center());
+
+  associated.angleDeg = pos.XInclination() * 180 / M_PI;
 }
 
 void Minion::Shoot(Vec2 target) {
@@ -33,7 +34,6 @@ void Minion::Shoot(Vec2 target) {
 
   Game::GetInstance().GetState().AddObject(bullet);
 }
-
 
 void Minion::Render() {}
 
