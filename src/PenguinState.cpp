@@ -2,7 +2,6 @@
 
 #include "Sprite.h"
 #include "Music.h"
-#include "Face.h"
 #include "Sound.h"
 #include "Game.h"
 #include "TileSet.h"
