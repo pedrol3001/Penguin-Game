@@ -2,8 +2,18 @@
 
 #include "Sprite.h"
 
-Bullet::Bullet(GameObject &associated, float angle, float speed, int damage, float maxDistance, string sprite) : Component(associated), distanceLeft(maxDistance) {
-  associated.AddComponent(new Sprite(associated, sprite));
+Bullet::Bullet(
+    GameObject &associated,
+    float angle,
+    float speed,
+    int damage,
+    float maxDistance,
+    string sprite,
+    int frameCount,
+    float frameTime
+  ) : Component(associated), distanceLeft(maxDistance) {
+
+  associated.AddComponent(new Sprite(associated, sprite, frameCount, frameTime));
 
   this->speed = Vec2(speed, 0).Rotate(angle);
 }

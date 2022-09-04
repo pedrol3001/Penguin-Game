@@ -5,20 +5,37 @@
 #include "NullGameObject.h"
 #include "Camera.h"
 
-Sprite::Sprite(string file) : Sprite(* new NullGameObject(), file) {}
+Sprite::Sprite(string file, int frameCount, float frameTime) : Sprite(* new NullGameObject(), file, frameCount, frameTime) {}
 
 Sprite::Sprite(GameObject& associated) : Component(associated), scale(1, 1), texture(nullptr){}
 
-Sprite::Sprite(GameObject& associated, string file) : Sprite(associated) {
+Sprite::Sprite(GameObject& associated, string file, int frameCount, float frameTime) : Sprite(associated) {
+  this->frameCount = frameCount;
+  this->frameTime = frameTime;
   Open(file);
-  associated.box.w = width;
-  associated.box.h = height;
+  this->associated.box.w = width / frameCount;
+  this->associated.box.h = height;
 }
 
 Sprite::~Sprite() {}
 
+void Sprite::SetFrame (int frame) {
+	currentFrame = frame;
+	SetClip(currentFrame * width / frameCount, clipRect.y, width / frameCount, height);
+}
+
+void Sprite::SetFrameCount (int frameCount) {
+  this->frameCount = frameCount;
+  SetScale(scale.x, scale.y);
+  SetFrame(0);
+}
+
+void Sprite::SetFrameTime (float frameTime) {
+	this->frameTime = frameTime;
+}
+
 int Sprite::GetWidth() {
-  return width * scale.x;
+  return width * scale.x / frameCount;
 }
 
 int Sprite::GetHeight() {
@@ -29,7 +46,7 @@ void Sprite::Open(string file) {
   texture = Resources::GetInstance().GetImage(file);
 
   SDL_QueryTexture(texture, nullptr, nullptr, &width, &height);
-  SetClip(0, 0, width, height);
+  SetClip(0, 0, width / frameCount, height);
 }
 
 bool Sprite::IsOpen(){
@@ -45,7 +62,7 @@ void Sprite::SetClip(int x, int y, int w, int h) {
 
 void Sprite::SetScaleX(float scaleVal){
   scale.x = scaleVal;
-  associated.box.w = width * scaleVal;
+  associated.box.w = width * scaleVal / frameCount;
   associated.box.x = associated.box.Center().x - associated.box.w / 2;
 }
 void Sprite::SetScaleY(float scaleVal){
@@ -68,7 +85,13 @@ void Sprite::Render(int x, int y) {
   SDL_RenderCopyEx(Game::GetInstance().GetRenderer(), texture, &clipRect, &rec, associated.angleDeg, nullptr , SDL_FLIP_NONE);
 }
 
-void Sprite::Update(float dt) {}
+void Sprite::Update(float dt) {
+  timeElapsed += dt;
+
+	if (timeElapsed > frameTime) {
+    SetFrame(currentFrame < frameCount - 1 ? currentFrame + 1 : 0);
+	}
+}
 
 bool Sprite::Is(string type) {
   return type == "SPRITE";

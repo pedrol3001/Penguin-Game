@@ -13,10 +13,15 @@ using namespace std;
 
 class Sprite : public Asset, public Component {
 public:
-  Sprite(string file);
   Sprite(GameObject& associated);
-  Sprite(GameObject& associated, string file);
+  Sprite(GameObject& associated, string file, int frameCount = 1, float frameTime = 1);
+  Sprite(string file, int frameCount = 1, float frameTime = 1);
+
   ~Sprite();
+
+  void SetFrame(int frame);
+  void SetFrameCount(int frameCount);
+  void SetFrameTime(float frameTime);
 
   void Open(string file);
   bool IsOpen();
@@ -41,6 +46,11 @@ private:
   Vec2 scale;
   SDL_Rect clipRect;
   SDL_Texture* texture;
+
+  int frameCount;
+  int currentFrame;
+  float timeElapsed;
+  float frameTime;
 };
 
 #endif
