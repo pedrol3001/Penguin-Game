@@ -32,15 +32,15 @@ void Alien::Update(float dt) {
   associated.angleDeg -= 5;
 
   InputManager inputManager = InputManager::GetInstance();
-  int mouseX = inputManager.GetMouseX();
-  int mouseY = inputManager.GetMouseY();
+  int x = inputManager.GetMouseX() + Camera::pos.x;
+  int y = inputManager.GetMouseY() + Camera::pos.y;
 
   if(inputManager.MousePress(LEFT_MOUSE_BUTTON)){
-    taskQueue.push(*new Action(Action::SHOOT, mouseX , mouseY));
+    taskQueue.push(*new Action(Action::SHOOT, x , y));
   }
   if(inputManager.MousePress(RIGHT_MOUSE_BUTTON)){
     taskQueue.swap(*new queue<Action>());
-    taskQueue.push(*new Action(Action::MOVE, mouseX, mouseY));
+    taskQueue.push(*new Action(Action::MOVE, x, y));
   }
 
   if (taskQueue.empty()) return;
@@ -64,7 +64,7 @@ void Alien::Update(float dt) {
   if(action.type == Action::SHOOT){
     taskQueue.pop();
     Minion* minion = dynamic_cast<Minion*>(minionArray[rand() % minionArray.size()].lock()->GetComponent("MINION"));
-    minion->Shoot(Vec2(mouseX, mouseY));
+    minion->Shoot(Vec2(x, y));
   }
 }
 
