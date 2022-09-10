@@ -66,7 +66,7 @@ void Alien::Update(float dt) {
         shared_ptr<GameObject> minionRef = m.lock();
 
         float dist = minionRef->box.Center().Dist(playerCenter);
-        if (dist >= minDistance) return;
+        if (dist >= minDistance) continue;
 
         minDistance = dist;
         minion = minionRef;
