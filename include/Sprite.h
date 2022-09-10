@@ -1,5 +1,5 @@
-#ifndef SPRITE_HPP
-#define SPRITE_HPP
+#ifndef SPRITE_H
+#define SPRITE_H
 
 #define INCLUDE_SDL_IMAGE
 
@@ -8,14 +8,15 @@
 #include <string>
 #include "Asset.h"
 #include "Component.h"
+#include "Timer.h"
 
 using namespace std;
 
 class Sprite : public Asset, public Component {
 public:
   Sprite(GameObject& associated);
-  Sprite(GameObject& associated, string file, int frameCount = 1, float frameTime = 1);
-  Sprite(string file, int frameCount = 1, float frameTime = 1);
+  Sprite(GameObject& associated, string file, int frameCount = 1, float frameTime = 1, float secondsToSelfDestruct = 0);
+  Sprite(string file, int frameCount = 1, float frameTime = 1, float secondsToSelfDestruct = 0);
 
   ~Sprite();
 
@@ -51,6 +52,9 @@ private:
   int currentFrame;
   float timeElapsed;
   float frameTime;
+
+  Timer selfDestructCount;
+  float secondsToSelfDestruct = 0;
 };
 
 #endif

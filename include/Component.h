@@ -1,5 +1,5 @@
-#ifndef COMPONENT_HPP
-#define COMPONENT_HPP
+#ifndef COMPONENT_H
+#define COMPONENT_H
 
 #include "GameObject.h"
 #include <string>
@@ -17,6 +17,8 @@ public:
   virtual void Render() = 0;
   virtual void Update(float dt) = 0;
   virtual bool Is(string type) = 0;
+
+  virtual void NotifyCollision (GameObject& other);
 
 protected:
   GameObject &associated;

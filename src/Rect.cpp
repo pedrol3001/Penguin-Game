@@ -26,7 +26,7 @@ Vec2 Rect::Center() {
 
 float Rect::CenterDist(Rect r) {
   Vec2 otherCenter = r.Center();
-  return this->Center().Dist(otherCenter);
+  return Center().Dist(otherCenter);
 }
 
 bool Rect::Contains(Vec2 vec) {

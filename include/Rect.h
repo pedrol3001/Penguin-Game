@@ -1,5 +1,5 @@
-#ifndef RECT_HPP
-#define RECT_HPP
+#ifndef RECT_H
+#define RECT_H
 
 #include "Vec2.h"
 

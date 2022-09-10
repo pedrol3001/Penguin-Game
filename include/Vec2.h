@@ -1,5 +1,5 @@
-#ifndef VEC2_HPP
-#define VEC2_HPP
+#ifndef VEC2_H
+#define VEC2_H
 
 #include <math.h>
 
@@ -13,6 +13,7 @@ public:
   Vec2 operator-(const Vec2& vec);
   Vec2 operator-=(const Vec2& vec);
   Vec2 operator*(const float& esc);
+  float Dot(const Vec2& vec);
 
   Vec2 Normalized();
   float Magnitude();

@@ -24,6 +24,10 @@ Vec2 Vec2::operator*(const float& esc)  {
   return Vec2(x * esc, y * esc);
 }
 
+float Vec2::Dot(const Vec2& vec) {
+  return x * vec.x + y * vec.y;
+}
+
 float Vec2::Magnitude() {
   return sqrtf((x * x) + (y * y));
 }

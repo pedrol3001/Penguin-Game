@@ -1,5 +1,5 @@
-#ifndef PENGUIN_STATE_HPP
-#define PENGUIN_STATE_HPP
+#ifndef PENGUIN_STATE_H
+#define PENGUIN_STATE_H
 
 #include "Sprite.h"
 #include "State.h"

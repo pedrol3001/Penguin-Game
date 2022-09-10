@@ -1,5 +1,5 @@
-#ifndef GAME_OBJECT_HPP
-#define GAME_OBJECT_HPP
+#ifndef GAME_OBJECT_H
+#define GAME_OBJECT_H
 
 #include <vector>
 #include <string>
@@ -13,7 +13,7 @@ class Component;
 
 class GameObject {
 public:
-  GameObject();
+  GameObject(bool skipAutoObjectAddition = false);
   GameObject(vector<shared_ptr<GameObject>> *objectArray);
   ~GameObject();
 
@@ -25,6 +25,8 @@ public:
   void AddComponent(Component* cpt);
   void RemoveComponent(Component* cpt);
   Component* GetComponent(string type);
+
+  void NotifyCollision(GameObject& other);
 
   Rect box;
   double angleDeg;

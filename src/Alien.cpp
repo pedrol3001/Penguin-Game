@@ -1,20 +1,31 @@
 #include "Alien.h"
 
 #include "Sprite.h"
-#include "InputManager.h"
 #include "Camera.h"
 #include "Minion.h"
 #include "Game.h"
+#include "Collider.h"
+#include "Bullet.h"
+#include "Sound.h"
+#include "Sprite.h"
+#include "PenguinBody.h"
+
 #include <cstdlib>
 
-Alien::Alien(GameObject &associated, int nMinions) : Component(associated), speed({0, 0}), hp(50) {
+int Alien::alienCount = 0;
+
+Alien::Alien(GameObject &associated, int nMinions) : Component(associated), speed({0, 0}), hp(50), state(RESTING) {
   associated.AddComponent(new Sprite(associated, "assets/img/alien.png"));
+  associated.AddComponent(new Collider(associated));
+
   minionArray.resize(nMinions);
+  alienCount++;
 }
 
 Alien::~Alien() {
   for (auto &minion : minionArray) minion.lock()->RequestDelete();
   minionArray.clear();
+  alienCount--;
 }
 
 void Alien::Start() {
@@ -24,53 +35,72 @@ void Alien::Start() {
 
     GameObject *minion = new GameObject();
     minion->AddComponent(new Minion(*minion, alien,  (static_cast<float>(i) / minionSize) * 2 * M_PI));
-    minionArray[i] = Game::GetInstance().GetState().AddObject(minion);
+    minionArray[i] = Game::GetInstance().GetState().GetObjectPtr(minion);
   }
 }
 
 void Alien::Update(float dt) {
   associated.angleDeg -= 5;
+  restTimer.Update(dt);
 
-  InputManager inputManager = InputManager::GetInstance();
-  int mouseX = inputManager.GetMouseX();
-  int mouseY = inputManager.GetMouseY();
+  if(PenguinBody::player == nullptr) return;
 
-  if(inputManager.MousePress(LEFT_MOUSE_BUTTON)){
-    taskQueue.push(*new Action(Action::SHOOT, mouseX , mouseY));
-  }
-  if(inputManager.MousePress(RIGHT_MOUSE_BUTTON)){
-    taskQueue.swap(*new queue<Action>());
-    taskQueue.push(*new Action(Action::MOVE, mouseX, mouseY));
+  Vec2 playerCenter = PenguinBody::player->Center();
+
+  if(state == RESTING && restTimer.Get() >= 2.5){
+    destination = playerCenter;
+    state = MOVING;
   }
 
-  if (taskQueue.empty()) return;
+  if(state == MOVING) {
+    Vec2 dest = destination - associated.box.Center();
+    Vec2 direction = Vec2(400 * dt, 0).Rotate(dest.XInclination());
 
-  Action action = taskQueue.front();
+    if(dest.Magnitude() >= direction.Magnitude()) {
+      associated.box += direction;
+    } else {
+      float minDistance = FLT_MAX;
+      shared_ptr<GameObject> minion;
 
-  if(action.type == Action::MOVE){
-    taskQueue.pop();
-    Vec2 destination = action.pos - Vec2(associated.box.x + (associated.box.w / 2), associated.box.y + (associated.box.h / 2));
-    Vec2 speed = Vec2(400 * dt, 0);
-    Vec2 direction = speed.Rotate(destination.XInclination());
+      for(auto& m : minionArray) {
+        shared_ptr<GameObject> minionRef = m.lock();
 
-    associated.box += direction;
+        float dist = minionRef->box.Center().Dist(playerCenter);
+        if (dist >= minDistance) return;
 
-    if(destination.Magnitude() >= direction.Magnitude()){
-      taskQueue.push(*new Action(Action::MOVE,action.pos.x, action.pos.y));
-      action = taskQueue.front();
+        minDistance = dist;
+        minion = minionRef;
+      }
+      dynamic_cast<Minion*>(minion->GetComponent("MINION"))->Shoot(playerCenter);
+
+      state = RESTING;
+      restTimer.Restart();
     }
   }
 
-  if(action.type == Action::SHOOT){
-    taskQueue.pop();
-    Minion* minion = dynamic_cast<Minion*>(minionArray[rand() % minionArray.size()].lock()->GetComponent("MINION"));
-    minion->Shoot(Vec2(mouseX, mouseY));
-  }
+  if (hp <= 0) {
+		GameObject* explosion = new GameObject();
+
+    explosion->box = associated.box;
+		explosion->AddComponent(new Sprite(*explosion, "assets/img/aliendeath.png", 4, 0.3, 1.0));
+
+		Sound* sound = new Sound(*explosion, "assets/audio/boom.wav");
+		explosion->AddComponent(sound);
+
+		sound->Play();
+
+		associated.RequestDelete();
+	}
 }
 
-Alien::Action::Action(Alien::Action::ActionType type, float x, float y) : type(type){
-  pos.x = x;
-  pos.y = y;
+void Alien::NotifyCollision(GameObject& other) {
+  Bullet* bullet = dynamic_cast<Bullet*>(other.GetComponent("BULLET"));
+
+	if (bullet == nullptr) return;
+
+  if (bullet->IsTargetingPlayer()) return;
+
+  hp -= bullet->GetDamage();
 }
 
 void Alien::Render() {}

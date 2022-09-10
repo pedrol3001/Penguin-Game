@@ -1,6 +1,7 @@
 #include "State.h"
 #include "Camera.h"
 #include "InputManager.h"
+#include "Collider.h"
 
 State::State() :  started(false), quitRequested(false){}
 
@@ -20,10 +21,25 @@ void State::Update(float dt) {
     objectArray[i].get()->Update(dt);
     if (objectArray[i]->IsDead()) objectArray.erase(objectArray.begin()+i);
   }
+
+  for (long unsigned int i = 0; i < objectArray.size(); i++) {
+    Collider* A = dynamic_cast<Collider*>(objectArray[i]->GetComponent("COLLIDER"));
+		if (A == nullptr) continue;
+
+    for (long unsigned int j = i + 1; j < objectArray.size(); j++ ) {
+      Collider* B = dynamic_cast<Collider*>(objectArray[j]->GetComponent("COLLIDER"));
+      if (B == nullptr) continue;
+
+      if (A->IsColliding(B)) {
+        objectArray[i]->NotifyCollision(*objectArray[j].get());
+        objectArray[j]->NotifyCollision(*objectArray[i].get());
+      }
+    }
+	}
 }
 
 void State::Render() {
-  for(auto& o : objectArray) o->Render();
+  for(long unsigned int i = 0; i < objectArray.size(); i++) objectArray[i]->Render();
 }
 
 weak_ptr<GameObject> State::AddObject(GameObject *go){
@@ -35,11 +51,11 @@ weak_ptr<GameObject> State::AddObject(GameObject *go){
 }
 
 weak_ptr< GameObject > State::GetObjectPtr(GameObject *go){
-  for (auto &o : objectArray) if(o.get() == go) return weak_ptr<GameObject>(o);
+  for(long unsigned int i = 0; i < objectArray.size(); i++) if(objectArray[i].get() == go) return weak_ptr<GameObject>(objectArray[i]);
   return weak_ptr<GameObject>();
 }
 
 void State::Start(){
-  for(auto& o : objectArray) o->Start();
+  for(long unsigned int i = 0; i < objectArray.size(); i++) objectArray[i]->Start();
   started = true;
 }

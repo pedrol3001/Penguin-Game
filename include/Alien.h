@@ -3,6 +3,7 @@
 
 #include <queue>
 #include "Component.h"
+#include "Timer.h"
 
 class Alien : public Component {
 public:
@@ -10,25 +11,22 @@ public:
   ~Alien();
 
   void Start();
+  void NotifyCollision (GameObject& other);
   void Update(float dt);
   void Render();
   bool Is(string type);
 
+  static int alienCount;
 private:
-  class Action{
-  public:
-    enum ActionType{ MOVE, SHOOT };
-    Action(ActionType type, float x, float y);
-
-    ActionType type;
-    Vec2 pos;
-  };
-
   Vec2 speed;
   int hp;
 
-  queue<Action> taskQueue;
   vector<weak_ptr<GameObject>> minionArray;
+
+  enum AlienState {MOVING, RESTING};
+  AlienState state;
+  Timer restTimer;
+  Vec2 destination;
 };
 
 #endif

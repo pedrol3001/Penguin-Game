@@ -10,13 +10,22 @@
 #include "Camera.h"
 #include "CameraFollower.h"
 #include "Alien.h"
+#include "PenguinBody.h"
 
 PenguinState::PenguinState() : State() {
 	LoadAssets();
 
+	GameObject *penguin = new GameObject(&objectArray);
+	penguin->box.x = 704 + penguin->box.w / 2;
+	penguin->box.y = 640 + penguin->box.h / 2;;
+	penguin->AddComponent(new PenguinBody(*penguin));
+
 	GameObject *alien = new GameObject(&objectArray);
+	alien->box.x = 512 + alien->box.w / 2;
+	alien->box.y = 300 + alien->box.h / 2;
 	alien->AddComponent(new Alien(*alien, 5));
-	alien->box += Vec2(512 + alien->box.w/2, 200 + alien->box.h/2);
+
+	Camera::Follow(penguin);
 }
 
 PenguinState::~PenguinState() {}

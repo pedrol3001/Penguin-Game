@@ -5,16 +5,18 @@
 #include "NullGameObject.h"
 #include "Camera.h"
 
-Sprite::Sprite(string file, int frameCount, float frameTime) : Sprite(* new NullGameObject(), file, frameCount, frameTime) {}
+Sprite::Sprite(string file, int frameCount, float frameTime, float secondsToSelfDestruct) : Sprite(* new NullGameObject(), file, frameCount, frameTime, secondsToSelfDestruct) {}
 
 Sprite::Sprite(GameObject& associated) : Component(associated), scale(1, 1), texture(nullptr){}
 
-Sprite::Sprite(GameObject& associated, string file, int frameCount, float frameTime) : Sprite(associated) {
-  this->frameCount = frameCount;
-  this->frameTime = frameTime;
+Sprite::Sprite(GameObject& associated, string file, int frameCount, float frameTime, float secondsToSelfDestruct) : Sprite(associated) {
+  SetFrameCount(frameCount);
+  SetFrameTime(frameTime);
   Open(file);
-  this->associated.box.w = width / frameCount;
   this->associated.box.h = height;
+  this->associated.box.w = width / frameCount;
+
+  this->secondsToSelfDestruct = secondsToSelfDestruct;
 }
 
 Sprite::~Sprite() {}
@@ -65,6 +67,7 @@ void Sprite::SetScaleX(float scaleVal){
   associated.box.w = width * scaleVal / frameCount;
   associated.box.x = associated.box.Center().x - associated.box.w / 2;
 }
+
 void Sprite::SetScaleY(float scaleVal){
   scale.y = scaleVal;
   associated.box.h = height * scaleVal;
@@ -86,11 +89,13 @@ void Sprite::Render(int x, int y) {
 }
 
 void Sprite::Update(float dt) {
+	if (timeElapsed > frameTime) SetFrame(currentFrame < frameCount - 1 ? currentFrame + 1 : 0);
   timeElapsed += dt;
 
-	if (timeElapsed > frameTime) {
-    SetFrame(currentFrame < frameCount - 1 ? currentFrame + 1 : 0);
-	}
+  if (secondsToSelfDestruct <= 0) return;
+
+  if (selfDestructCount.Get() >= secondsToSelfDestruct) associated.RequestDelete();
+  selfDestructCount.Update(dt);
 }
 
 bool Sprite::Is(string type) {

@@ -1,5 +1,5 @@
-#ifndef STATE_HPP
-#define STATE_HPP
+#ifndef STATE_H
+#define STATE_H
 
 #include "Sprite.h"
 #include "Music.h"
