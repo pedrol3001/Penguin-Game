@@ -35,7 +35,7 @@ void PenguinCannon::Shoot(){
   if(cooldown.Get() <= 0.5) return;
 
 	GameObject* bullet = new GameObject();
-	bullet->AddComponent(new Bullet(*bullet, angle, 300, 20, 600, "assets/img/penguinbullet.png", 4, 0.2, false));
+	bullet->AddComponent(new Bullet(*bullet, angle, 500, 20, 600, "assets/img/penguinbullet.png", 4, 0.2, false));
 	bullet->box += associated.box.Center() - bullet->box.Center();
 
   cooldown.Restart();
