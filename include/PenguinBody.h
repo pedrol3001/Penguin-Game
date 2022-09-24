@@ -1,9 +1,9 @@
 #ifndef PENGUIN_BODY_H
 #define PENGUIN_BODY_H
 
-#include "Component.h"
+#include <Component.h>
 #include <memory>
-#include "Vec2.h"
+#include <Vec2.h>
 
 class PenguinBody: public Component {
 public:

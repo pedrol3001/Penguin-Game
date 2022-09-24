@@ -2,17 +2,20 @@
 #define WIDTH 1024
 #define HEIGHT 600
 
-#include "SDL_exception.h"
-#include "PenguinState.h"
-#include "Game.h"
+#include <SDL_exception.h>
+#include <PenguinTitleState.h>
+#include <Game.h>
 
 #include <iostream>
 using namespace std;
 
-int main (int argc, char** argv) {
+int main (int argc, char** argv){
+  srand(time(NULL));
+
   try{
-    Game::GetInstance(TITLE, WIDTH, HEIGHT).SetState(new PenguinState());
-    Game::GetInstance().Run();
+    Game& game = Game::GetInstance(TITLE, WIDTH, HEIGHT);
+    game.Push(new PenguinTitleState());
+    game.Run();
   }catch(SDL_Exception& e){
     cout << e.what() << endl;
   }

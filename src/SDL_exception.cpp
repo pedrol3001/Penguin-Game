@@ -1,4 +1,4 @@
-#include "SDL_exception.h"
+#include <SDL_exception.h>
 
 SDL_Exception::SDL_Exception(){
   const char* sdl_msg = SDL_GetError();
@@ -10,6 +10,6 @@ SDL_Exception::SDL_Exception(string msg){
   message = (msg + " - " + string(sdl_msg));
 }
 
-const char* SDL_Exception::what() {
+const char* SDL_Exception::what(){
   return message.c_str();
 }

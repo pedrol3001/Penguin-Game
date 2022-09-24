@@ -2,11 +2,11 @@
 #define INPUT_MANAGER_H
 
 #define INCLUDE_SDL
-#include "SDL_include.h"
+#include <SDL_include.h>
 
 #include <unordered_map>
 
-#include "Vec2.h"
+#include <Vec2.h>
 
 #define UP_ARROW_KEY        SDLK_UP
 #define DOWN_ARROW_KEY      SDLK_DOWN

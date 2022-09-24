@@ -1,7 +1,7 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include "GameObject.h"
+#include <GameObject.h>
 
 #define CAMERA_SPEED 300
 

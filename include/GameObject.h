@@ -4,8 +4,8 @@
 #include <vector>
 #include <string>
 #include <memory>
-#include "Rect.h"
-#include "Component.h"
+#include <Rect.h>
+#include <Component.h>
 
 using namespace std;
 

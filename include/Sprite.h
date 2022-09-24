@@ -3,12 +3,12 @@
 
 #define INCLUDE_SDL_IMAGE
 
-#include "SDL_include.h"
+#include <SDL_include.h>
 
 #include <string>
-#include "Asset.h"
-#include "Component.h"
-#include "Timer.h"
+#include <Asset.h>
+#include <Component.h>
+#include <Timer.h>
 
 using namespace std;
 

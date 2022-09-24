@@ -4,10 +4,11 @@
 #define INCLUDE_SDL
 #define INCLUDE_SDL_IMAGE
 #define INCLUDE_SDL_MIXER
+#define INCLUDE_SDL_TTF
 
 #include <string>
 #include <unordered_map>
-#include "SDL_include.h"
+#include <SDL_include.h>
 
 using namespace std;
 
@@ -29,10 +30,14 @@ public:
   Mix_Chunk* GetSound(string file);
   void ClearSounds();
 
+  TTF_Font *GetFont(string file,int size);
+  void ClearFont();
+
 private:
   unordered_map<string, SDL_Texture*> imageTable;
   unordered_map<string, Mix_Music*> musicTable;
   unordered_map<string, Mix_Chunk*> soundTable;
+  unordered_map<string, TTF_Font*> fontTable;
 };
 
 #endif

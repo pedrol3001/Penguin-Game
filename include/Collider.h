@@ -1,9 +1,9 @@
 #ifndef COLLIDER_H
 #define COLLIDER_H
 
-#include "Component.h"
-#include "Vec2.h"
-#include "Rect.h"
+#include <Component.h>
+#include <Vec2.h>
+#include <Rect.h>
 
 class Collider: public Component {
 	public:

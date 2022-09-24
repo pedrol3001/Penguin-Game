@@ -2,16 +2,17 @@
 #define MUSIC_H
 
 #define INCLUDE_SDL_MIXER
-#include "SDL_include.h"
+#include <SDL_include.h>
 
 #include <string>
-#include "Asset.h"
-#include "Component.h"
+#include <Asset.h>
+#include <Component.h>
 
 using namespace std;
 
 class Music : public Asset, public Component {
 public:
+  Music();
   Music(GameObject &associated);
   Music(GameObject &associated, string file);
   ~Music();

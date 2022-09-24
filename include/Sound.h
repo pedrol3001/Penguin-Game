@@ -2,10 +2,10 @@
 #define SOUND_H
 
 #define INCLUDE_SDL_MIXER
-#include "SDL_include.h"
+#include <SDL_include.h>
 
-#include "Component.h"
-#include "Asset.h"
+#include <Component.h>
+#include <Asset.h>
 
 class Sound : public Asset, public Component{
 public:

@@ -1,7 +1,7 @@
 #ifndef MINION_H
 #define MINION_H
 
-#include "GameObject.h"
+#include <GameObject.h>
 
 class Minion : public Component {
 public:

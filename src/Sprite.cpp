@@ -1,15 +1,15 @@
-#include "Game.h"
-#include "Sprite.h"
-#include "Resources.h"
-#include "SDL_exception.h"
-#include "NullGameObject.h"
-#include "Camera.h"
+#include <Game.h>
+#include <Sprite.h>
+#include <Resources.h>
+#include <SDL_exception.h>
+#include <NullGameObject.h>
+#include <Camera.h>
 
-Sprite::Sprite(string file, int frameCount, float frameTime, float secondsToSelfDestruct) : Sprite(* new NullGameObject(), file, frameCount, frameTime, secondsToSelfDestruct) {}
+Sprite::Sprite(string file, int frameCount, float frameTime, float secondsToSelfDestruct) : Sprite(* new NullGameObject(), file, frameCount, frameTime, secondsToSelfDestruct){}
 
 Sprite::Sprite(GameObject& associated) : Component(associated), scale(1, 1), texture(nullptr){}
 
-Sprite::Sprite(GameObject& associated, string file, int frameCount, float frameTime, float secondsToSelfDestruct) : Sprite(associated) {
+Sprite::Sprite(GameObject& associated, string file, int frameCount, float frameTime, float secondsToSelfDestruct) : Sprite(associated){
   SetFrameCount(frameCount);
   SetFrameTime(frameTime);
   Open(file);
@@ -19,32 +19,32 @@ Sprite::Sprite(GameObject& associated, string file, int frameCount, float frameT
   this->secondsToSelfDestruct = secondsToSelfDestruct;
 }
 
-Sprite::~Sprite() {}
+Sprite::~Sprite(){}
 
-void Sprite::SetFrame (int frame) {
+void Sprite::SetFrame (int frame){
 	currentFrame = frame;
 	SetClip(currentFrame * width / frameCount, clipRect.y, width / frameCount, height);
 }
 
-void Sprite::SetFrameCount (int frameCount) {
+void Sprite::SetFrameCount (int frameCount){
   this->frameCount = frameCount;
   SetScale(scale.x, scale.y);
   SetFrame(0);
 }
 
-void Sprite::SetFrameTime (float frameTime) {
+void Sprite::SetFrameTime (float frameTime){
 	this->frameTime = frameTime;
 }
 
-int Sprite::GetWidth() {
+int Sprite::GetWidth(){
   return width * scale.x / frameCount;
 }
 
-int Sprite::GetHeight() {
+int Sprite::GetHeight(){
   return height * scale.y;
 }
 
-void Sprite::Open(string file) {
+void Sprite::Open(string file){
   texture = Resources::GetInstance().GetImage(file);
 
   SDL_QueryTexture(texture, nullptr, nullptr, &width, &height);
@@ -55,7 +55,7 @@ bool Sprite::IsOpen(){
   return texture != nullptr;
 }
 
-void Sprite::SetClip(int x, int y, int w, int h) {
+void Sprite::SetClip(int x, int y, int w, int h){
   clipRect.x = x;
   clipRect.y = y;
   clipRect.w = w;
@@ -74,21 +74,21 @@ void Sprite::SetScaleY(float scaleVal){
   associated.box.y = associated.box.Center().y - associated.box.h / 2;
 }
 
-void Sprite::SetScale(float scaleX, float scaleY) {
+void Sprite::SetScale(float scaleX, float scaleY){
   if(scaleX != 0) SetScaleX(scaleX);
   if(scaleY != 0) SetScaleY(scaleY);
 }
 
-void Sprite::Render() {
+void Sprite::Render(){
   Render(static_cast<int>(associated.box.x - Camera::pos.x), static_cast<int>(associated.box.y - Camera::pos.y));
 }
 
-void Sprite::Render(int x, int y) {
+void Sprite::Render(int x, int y){
   SDL_Rect rec(x, y, static_cast<int>(clipRect.w * scale.x), static_cast<int>(clipRect.h * scale.y));
   SDL_RenderCopyEx(Game::GetInstance().GetRenderer(), texture, &clipRect, &rec, associated.angleDeg, nullptr , SDL_FLIP_NONE);
 }
 
-void Sprite::Update(float dt) {
+void Sprite::Update(float dt){
 	if (timeElapsed > frameTime) SetFrame(currentFrame < frameCount - 1 ? currentFrame + 1 : 0);
   timeElapsed += dt;
 
@@ -98,7 +98,7 @@ void Sprite::Update(float dt) {
   selfDestructCount.Update(dt);
 }
 
-bool Sprite::Is(string type) {
+bool Sprite::Is(string type){
   return type == "SPRITE";
 }
 

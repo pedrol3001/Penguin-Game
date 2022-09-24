@@ -1,5 +1,5 @@
-#include "CameraFollower.h"
-#include "Camera.h"
+#include <CameraFollower.h>
+#include <Camera.h>
 
 CameraFollower::CameraFollower(GameObject &associated) : Component(associated){}
 

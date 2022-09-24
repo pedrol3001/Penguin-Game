@@ -2,7 +2,7 @@
 #define ERROR_H
 
 #define INCLUDE_SDL
-#include "SDL_include.h"
+#include <SDL_include.h>
 
 #include <string>
 

@@ -1,7 +1,7 @@
 #ifndef CAMERA_FOLLOWER_H
 #define CAMERA_FOLLOWER_H
 
-#include  "Component.h"
+#include <Component.h>
 
 class CameraFollower : public Component {
 public:

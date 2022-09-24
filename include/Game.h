@@ -10,11 +10,12 @@
 #define DEFAULT_WIDTH 1024
 #define DEFAULT_HEIGHT 600
 
-#include "SDL_include.h"
+#include <SDL_include.h>
 
 #include <string>
-#include "Asset.h"
-#include "State.h"
+#include <stack>
+#include <Asset.h>
+#include <State.h>
 
 using namespace std;
 
@@ -31,9 +32,6 @@ public:
   Game(Game &other) = delete;
   void operator=(const Game &) = delete;
 
-  void SetState(State *state);
-  State& GetState();
-
   SDL_Renderer* GetRenderer();
   void Run();
 
@@ -43,10 +41,15 @@ public:
   int GetWidth();
   int GetHeight();
 
+  void Push(State* state);
+  State& GetCurrentState();
+
 private:
   SDL_Window* window;
   SDL_Renderer* renderer;
-  State* state;
+
+  State* storedState;
+  stack<unique_ptr<State>> stateStack;
 
   int width, height;
 

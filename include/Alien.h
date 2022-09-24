@@ -2,8 +2,8 @@
 #define ALIEN_H
 
 #include <queue>
-#include "Component.h"
-#include "Timer.h"
+#include <Component.h>
+#include <Timer.h>
 
 class Alien : public Component {
 public:
@@ -27,6 +27,7 @@ private:
   AlienState state;
   Timer restTimer;
   Vec2 destination;
+  float timeOffset;
 };
 
 #endif

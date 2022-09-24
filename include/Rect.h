@@ -1,7 +1,7 @@
 #ifndef RECT_H
 #define RECT_H
 
-#include "Vec2.h"
+#include <Vec2.h>
 
 class Rect {
 public:

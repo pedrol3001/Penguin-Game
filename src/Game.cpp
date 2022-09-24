@@ -1,7 +1,7 @@
-#include "Game.h"
-#include "Resources.h"
-#include "SDL_exception.h"
-#include "InputManager.h"
+#include <Game.h>
+#include <Resources.h>
+#include <SDL_exception.h>
+#include <InputManager.h>
 
 #define FLAGS_IMG (IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF)
 #define FLAGS_MIX /*MIX_INIT_MP3 |*/ MIX_INIT_OGG
@@ -26,12 +26,28 @@ Game::Game(string title, int width, int height){
 }
 
 void Game::Run(){
-  GetState().Start();
-  while(!GetState().QuitRequested()) {
+  stateStack.emplace(storedState);
+  storedState = nullptr;
+
+  GetCurrentState().Start();
+  while(!stateStack.empty() && !GetCurrentState().QuitRequested()){
+    if(GetCurrentState().PopRequested()){
+      stateStack.pop();
+      GetCurrentState().Resume();
+    }
+
+    if(storedState != nullptr){
+      GetCurrentState().Pause();
+      stateStack.emplace(storedState);
+      storedState = nullptr;
+
+      GetCurrentState().Start();
+    }
+
     CalculateDeltaTime();
     InputManager::GetInstance().Update();
-    GetState().Update(dt);
-    GetState().Render();
+    GetCurrentState().Update(dt);
+    GetCurrentState().Render();
     SDL_RenderPresent(renderer);
     SDL_Delay(33);
   }
@@ -42,10 +58,10 @@ void Game::Run(){
 
 Game::~Game(){
   TTF_Quit();
-  Mix_CloseAudio();
   Mix_Quit();
   IMG_Quit();
   SDL_Quit();
+  Mix_CloseAudio();
   SDL_DestroyRenderer(renderer);
   SDL_DestroyWindow(window);
 }
@@ -57,22 +73,22 @@ Game& Game::GetInstance(){
   return *instance;
 }
 
-Game& Game::GetInstance(string title, int width, int height) {
+Game& Game::GetInstance(string title, int width, int height){
   if(instance == nullptr){
     instance = new Game(title, width, height);
   }
   return *instance;
 }
 
-void Game::SetState(State *state){
-  this->state = state;
+State &Game::GetCurrentState(){
+    return *(unique_ptr<State> &)stateStack.top();
 }
 
-State& Game::GetState(){
-  return *state;
+void Game::Push(State *state){
+    storedState = state;
 }
 
-SDL_Renderer* Game::GetRenderer() {
+SDL_Renderer* Game::GetRenderer(){
   return renderer;
 }
 

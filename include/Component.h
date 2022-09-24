@@ -1,7 +1,7 @@
 #ifndef COMPONENT_H
 #define COMPONENT_H
 
-#include "GameObject.h"
+#include <GameObject.h>
 #include <string>
 
 using namespace std;

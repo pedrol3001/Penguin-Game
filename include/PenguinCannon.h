@@ -1,8 +1,9 @@
 #ifndef PENGUIN_CANNON_H
 #define PENGUIN_CANNON_H
 
-#include "Component.h"
+#include <Component.h>
 #include <memory>
+#include <Timer.h>
 
 class PenguinCannon: public Component {
 	public:
@@ -13,10 +14,10 @@ class PenguinCannon: public Component {
 		bool Is(string type);
 
 		void Shoot();
-
 	private:
 		weak_ptr <GameObject> pbody;
 		float angle;
+		Timer cooldown;
 };
 
 #endif

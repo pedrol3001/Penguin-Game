@@ -2,7 +2,7 @@
 #define TILESET_H
 
 #include <string>
-#include "Sprite.h"
+#include <Sprite.h>
 
 using namespace std;
 

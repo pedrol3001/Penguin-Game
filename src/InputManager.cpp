@@ -1,5 +1,5 @@
-#include "InputManager.h"
-#include "Camera.h"
+#include <InputManager.h>
+#include <Camera.h>
 
 InputManager& InputManager::GetInstance(){
   static InputManager inputManager;
@@ -18,7 +18,7 @@ void InputManager::Update(){
   updateCounter++;
 
   SDL_Event event;
-  while (SDL_PollEvent(&event)) {
+  while (SDL_PollEvent(&event)){
     if((event.type == SDL_KEYDOWN || event.type == SDL_KEYUP) && !event.key.repeat){
       keyState[event.key.keysym.sym] = (event.type == SDL_KEYDOWN);
       keyUpdate[event.key.keysym.sym] = updateCounter;

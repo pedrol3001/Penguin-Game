@@ -1,6 +1,6 @@
-#include "Camera.h"
-#include "Game.h"
-#include "InputManager.h"
+#include <Camera.h>
+#include <Game.h>
+#include <InputManager.h>
 
 Vec2 Camera::pos = *new Vec2();
 Vec2 Camera::speed = *new Vec2();

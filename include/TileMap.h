@@ -1,8 +1,8 @@
 #ifndef TILEMAP_H
 #define TILEMAP_H
 
-#include "GameObject.h"
-#include "TileSet.h"
+#include <GameObject.h>
+#include <TileSet.h>
 
 using namespace std;
 

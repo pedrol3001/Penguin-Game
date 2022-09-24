@@ -1,7 +1,7 @@
 #ifndef BULLET_H
 #define BULLET_H
 
-#include "Component.h"
+#include <Component.h>
 
 class Bullet : public Component {
 public:

@@ -1,8 +1,8 @@
-#include "Sound.h"
-#include "Resources.h"
-#include "SDL_exception.h"
+#include <Sound.h>
+#include <Resources.h>
+#include <SDL_exception.h>
 
-Sound::Sound(GameObject &associated) : Component(associated), chunk(nullptr) {}
+Sound::Sound(GameObject &associated) : Component(associated), chunk(nullptr){}
 
 Sound::Sound(GameObject &associated, string file) : Sound(associated){
   Open(file);

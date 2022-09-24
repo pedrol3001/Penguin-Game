@@ -1,19 +1,19 @@
-#include "Timer.h"
+#include <Timer.h>
 
 Timer::Timer(float time) :
-  time(time) {
+  time(time){
 }
 
-Timer::Timer() : Timer(0) {}
+Timer::Timer() : Timer(0){}
 
-void Timer::Update(float dt) {
+void Timer::Update(float dt){
 	time += dt;
 }
 
-void Timer::Restart() {
+void Timer::Restart(){
 	time = 0;
 }
 
-float Timer::Get() {
+float Timer::Get(){
 	return time;
 }
