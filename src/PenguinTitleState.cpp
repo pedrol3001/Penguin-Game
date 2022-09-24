@@ -55,5 +55,3 @@ void PenguinTitleState::LoadAssets(){
   blinkingText->box.x = Game::GetInstance().GetWidth() / 2 - blinkingText->box.w / 2;
   blinkingText->box.y = Game::GetInstance().GetHeight() - blinkingText->box.h;
 }
-
-
